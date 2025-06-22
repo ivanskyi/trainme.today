@@ -28,10 +28,3 @@
    npm run build
    npm run deploy
    ```
-
-5. **Check GitHub Pages**
-    - Enable GitHub Pages in your repository settings.
-    - Your site will be available at:
-      ```
-      https://<your-username>.github.io/<repository-name>/
-      ```
