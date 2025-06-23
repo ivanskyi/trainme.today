@@ -1,0 +1,24 @@
+<nav class="navbar">
+  <div class="container">
+    <a class="logo" routerLink="/">TrainMe.today</a>
+
+    <button class="menu-toggle" aria-label="Toggle menu" (click)="menuOpen = !menuOpen">
+      <span [class.open]="menuOpen"></span>
+      <span [class.open]="menuOpen"></span>
+      <span [class.open]="menuOpen"></span>
+    </button>
+
+    <ul class="nav-links" [class.open]="menuOpen">
+      <li><a routerLink="/dashboard" (click)="menuOpen = false">Dashboard</a></li>
+
+      <ng-container *ngIf="isLoggedIn$ | async; else loginLinks">
+        <li><a href="#" (click)="logout(); menuOpen = false">Logout</a></li>
+      </ng-container>
+
+      <ng-template #loginLinks>
+        <li><a routerLink="/login" (click)="menuOpen = false">Login</a></li>
+        <li><a routerLink="/register" (click)="menuOpen = false">Register</a></li>
+      </ng-template>
+    </ul>
+  </div>
+</nav>

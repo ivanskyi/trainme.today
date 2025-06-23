@@ -1,0 +1,82 @@
+.login-container {
+  max-width: 360px;
+  margin: 3rem auto;
+  padding: 2rem 2.5rem;
+  background-color: #ffffff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #222831;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  h2 {
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    user-select: none;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+
+    label {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+      user-select: none;
+    }
+
+    input {
+      padding: 0.75rem 1rem;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+      outline-offset: 2px;
+
+      &:focus {
+        border-color: #00adb5;
+        box-shadow: 0 0 6px rgba(0, 173, 181, 0.5);
+        outline: none;
+      }
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.85rem 1rem;
+      background-color: #00adb5;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+
+      &:hover,
+      &:focus {
+        background-color: #008f95;
+        outline: none;
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  .error-message {
+    color: #e63946;
+    font-weight: 600;
+    text-align: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .login-container {
+    margin: 2rem 1rem;
+    padding: 1.5rem 1.75rem;
+  }
+}
