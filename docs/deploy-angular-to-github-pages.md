@@ -28,3 +28,5 @@
    npm run build
    npm run deploy
    ```
+
+5. **Check GitHub Page
