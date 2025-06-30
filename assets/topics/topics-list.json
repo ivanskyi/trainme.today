@@ -1,0 +1,12 @@
+[
+  {
+    "id": "java-core",
+    "name": "Java Core",
+    "description": "Основи Java для middle розробника"
+  },
+  {
+    "id": "java-collections",
+    "name": "Java Collections",
+    "description": "Колекції та робота з ними"
+  }
+]

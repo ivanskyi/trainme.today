@@ -1,0 +1,37 @@
+{
+  "topic": {
+    "id": "topic1",
+    "name": "Mathematics",
+    "description": "Test your math skills",
+    "tests": [
+      {
+        "test_id": "test1",
+        "test_title": "Basic Algebra Quiz",
+        "questions": [
+          {
+            "question_id": "q1",
+            "question_text": "What is the solution to 2x + 3 = 7?",
+            "options": [
+              { "option_id": "a", "text": "x = 1" },
+              { "option_id": "b", "text": "x = 2" },
+              { "option_id": "c", "text": "x = 3" },
+              { "option_id": "d", "text": "x = 4" }
+            ],
+            "correct_option_id": "b"
+          },
+          {
+            "question_id": "q2",
+            "question_text": "Simplify: 3(x - 4) + 2",
+            "options": [
+              { "option_id": "a", "text": "3x - 10" },
+              { "option_id": "b", "text": "3x - 14" },
+              { "option_id": "c", "text": "3x + 2" },
+              { "option_id": "d", "text": "3x - 12" }
+            ],
+            "correct_option_id": "b"
+          }
+        ]
+      }
+    ]
+  }
+}
