@@ -1,1 +1,12 @@
-<p>public-dashboard works!</p>
+<div class="container">
+  <h1>Topics List</h1>
+  <ul class="topics-list">
+    <li *ngFor="let topic of topics" (click)="openTopic(topic.id)" class="topic-item" tabindex="0">
+      <div class="topic-content">
+        <h3>{{ topic.name }}</h3>
+        <p>{{ topic.description }}</p>
+      </div>
+      <div class="arrow">›</div>
+    </li>
+  </ul>
+</div>
