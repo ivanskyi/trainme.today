@@ -300,3 +300,5 @@ backend/.sts4-cache
 /backend/*.ear
 /backend/*.tar.gz
 /backend/*.tgz
+
+/docs/*.*
