@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from "rxjs";
+import {Observable, of} from "rxjs";
 import { AuthService } from "../../service/auth.service";
 
 @Component({
@@ -8,7 +8,7 @@ import { AuthService } from "../../service/auth.service";
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  isLoggedIn$!: Observable<boolean>;
+  isLoggedIn$: Observable<boolean> = of(false);
 
   menuOpen = false;
 
