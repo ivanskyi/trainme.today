@@ -1,1 +1,16 @@
-<h1>Dashboard</h1>
+<div class="search-container">
+  <input
+    type="text"
+    [(ngModel)]="query"
+    placeholder="Search topics"
+    (keyup.enter)="onSearch()"
+    aria-label="Search topics"
+  />
+  <button (click)="onSearch()">Search</button>
+</div>
+
+<ul *ngIf="topics.length > 0" class="results-list">
+  <li *ngFor="let topic of topics" class="result-item">
+    {{ topic.id }} - {{ topic.name }}
+  </li>
+</ul>

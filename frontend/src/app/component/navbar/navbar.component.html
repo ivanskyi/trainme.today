@@ -9,7 +9,9 @@
     </button>
 
     <ul class="nav-links" [class.open]="menuOpen">
-      <li><a routerLink="/dashboard" (click)="menuOpen = false">Dashboard</a></li>
+      <li *ngIf="isLoggedIn$ | async">
+        <a routerLink="/dashboard" (click)="menuOpen = false">Dashboard</a>
+      </li>
 
       <ng-container *ngIf="isLoggedIn$ | async; else loginLinks">
         <li><a href="#" (click)="logout(); menuOpen = false">Logout</a></li>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-
+import { TopicService } from '../../service/topic.service';
+import { Topic } from '../../interface/topic';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
+  query: string = '';
+  topics: Topic[] = [];
+
+  constructor(private topicService: TopicService) {}
+
+  onSearch(): void {
+    this.topicService.searchTopics(this.query).subscribe((data: Topic[]) => {
+      this.topics = data;
+    });
+  }
 }

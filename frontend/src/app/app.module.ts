@@ -10,6 +10,8 @@ import { LoginComponent } from './component/login/login.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptorService} from "./interceptor/auth.interceptor.service";
 import { RegisterComponent } from './component/register/register.component';
+import { PublicDashboardComponent } from './component/public-dashboard/public-dashboard.component';
+import {TopicComponent} from "./component/topic/topic.component";
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { RegisterComponent } from './component/register/register.component';
     DashboardComponent,
     NavbarComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    PublicDashboardComponent,
+    TopicComponent
   ],
     imports: [
       BrowserModule,

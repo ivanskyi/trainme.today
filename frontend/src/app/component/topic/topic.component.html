@@ -1,0 +1,41 @@
+<div class="container" *ngIf="topic">
+  <h1>{{ topic.name }}</h1>
+  <p>{{ topic.description }}</p>
+
+  <div *ngIf="topic.tests.length > 0">
+    <h2>{{ topic.tests[currentTestIndex].test_title }}</h2>
+
+    <div class="progress">
+      <div class="progress-bar"
+           [style.width.%]="
+             ((currentQuestionIndex + 1) / topic.tests[currentTestIndex].questions.length) * 100">
+      </div>
+      <p>Question {{ currentQuestionIndex + 1 }} / {{ topic.tests[currentTestIndex].questions.length }}</p>
+    </div>
+
+    <div class="question-block">
+      <p><strong>{{ topic.tests[currentTestIndex].questions[currentQuestionIndex].question_text }}</strong></p>
+      <ul>
+        <li *ngFor="let option of topic.tests[currentTestIndex].questions[currentQuestionIndex].options"
+            (click)="selectOption(topic.tests[currentTestIndex].questions[currentQuestionIndex].question_id, option.option_id)"
+            [class.selected]="answers[topic.tests[currentTestIndex].questions[currentQuestionIndex].question_id] === option.option_id">
+          {{ option.text }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="navigation">
+      <button (click)="prevQuestion()" [disabled]="currentQuestionIndex === 0">Previous Question</button>
+      <button (click)="nextQuestion()" [disabled]="currentQuestionIndex === topic.tests[currentTestIndex].questions.length - 1">Next Question</button>
+    </div>
+
+    <div class="result" *ngIf="result !== null && currentQuestionIndex === topic.tests[currentTestIndex].questions.length - 1">
+      <p>Your score: {{ result }} / {{ topic.tests[currentTestIndex].questions.length }}</p>
+    </div>
+
+    <div class="test-navigation">
+      <button (click)="prevTest()" [disabled]="currentTestIndex === 0">Previous Test</button>
+      <button (click)="nextTest()" [disabled]="currentTestIndex === topic.tests.length - 1">Next Test</button>
+    </div>
+  </div>
+</div>
