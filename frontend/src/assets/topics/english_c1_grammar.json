@@ -1,0 +1,682 @@
+{
+  "topic": {
+    "id": "english_c1_grammar",
+    "name": "English Grammar - Tenses Mastery Test",
+    "description": "Challenging questions covering all English tenses to master advanced grammar",
+    "tests": [
+      {
+        "test_id": "all_tenses",
+        "test_title": "Advanced English Tenses Test",
+        "questions": [
+          {
+            "question_id": "q1",
+            "question_text": "Which sentence correctly uses the Past Perfect Continuous tense?",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "She had been working here since 2010 before she moved."
+              },
+              {
+                "option_id": "b",
+                "text": "She worked here since 2010 before she moved."
+              },
+              {
+                "option_id": "c",
+                "text": "She was working here before she moved."
+              },
+              {
+                "option_id": "d",
+                "text": "She has worked here before she moved."
+              }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q2",
+            "question_text": "Identify the sentence that uses the Future Perfect tense correctly:",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "By next year, I will have finished my studies."
+              },
+              {
+                "option_id": "b",
+                "text": "I will finish my studies by next year."
+              },
+              {
+                "option_id": "c",
+                "text": "I will be finishing my studies by next year."
+              },
+              {
+                "option_id": "d",
+                "text": "I will have been finishing my studies by next year."
+              }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q3",
+            "question_text": "Which sentence correctly illustrates the use of Present Perfect Continuous?",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "I have been reading this book for three hours."
+              },
+              {
+                "option_id": "b",
+                "text": "I have read this book for three hours."
+              },
+              {
+                "option_id": "c",
+                "text": "I read this book for three hours."
+              },
+              {
+                "option_id": "d",
+                "text": "I am reading this book for three hours."
+              }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q4",
+            "question_text": "Choose the sentence with correct use of the Past Simple passive voice:",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "The letter was sent yesterday by John."
+              },
+              {
+                "option_id": "b",
+                "text": "The letter sent yesterday by John."
+              },
+              {
+                "option_id": "c",
+                "text": "The letter has been sent yesterday by John."
+              },
+              {
+                "option_id": "d",
+                "text": "The letter is sent yesterday by John."
+              }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q5",
+            "question_text": "Which sentence uses the Future Continuous tense correctly?",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "This time tomorrow, I will be flying to Paris."
+              },
+              {
+                "option_id": "b",
+                "text": "This time tomorrow, I will fly to Paris."
+              },
+              {
+                "option_id": "c",
+                "text": "This time tomorrow, I will have flown to Paris."
+              },
+              {
+                "option_id": "d",
+                "text": "This time tomorrow, I will have been flying to Paris."
+              }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q6",
+            "question_text": "Identify the sentence correctly using the Present Simple tense for scheduled future events:",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "The train leaves at 8 PM tonight."
+              },
+              {
+                "option_id": "b",
+                "text": "The train is leaving at 8 PM tonight."
+              },
+              {
+                "option_id": "c",
+                "text": "The train will leave at 8 PM tonight."
+              },
+              {
+                "option_id": "d",
+                "text": "The train has left at 8 PM tonight."
+              }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q7",
+            "question_text": "Which sentence correctly uses the Past Perfect tense?",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "They had left before we arrived."
+              },
+              {
+                "option_id": "b",
+                "text": "They left before we had arrived."
+              },
+              {
+                "option_id": "c",
+                "text": "They left before we arrived."
+              },
+              {
+                "option_id": "d",
+                "text": "They have left before we arrived."
+              }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q8",
+            "question_text": "Select the sentence that correctly uses the Present Perfect Passive voice:",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "The report has been completed by the team."
+              },
+              {
+                "option_id": "b",
+                "text": "The report has completed by the team."
+              },
+              {
+                "option_id": "c",
+                "text": "The report has been completing by the team."
+              },
+              {
+                "option_id": "d",
+                "text": "The report is completed by the team."
+              }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q9",
+            "question_text": "Which sentence uses the Past Continuous tense correctly?",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "I was watching TV when she called."
+              },
+              {
+                "option_id": "b",
+                "text": "I watched TV when she called."
+              },
+              {
+                "option_id": "c",
+                "text": "I have been watching TV when she called."
+              },
+              {
+                "option_id": "d",
+                "text": "I had watched TV when she called."
+              }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q10",
+            "question_text": "Which sentence demonstrates correct use of the Future Perfect Continuous tense?",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "By next month, she will have been working here for five years."
+              },
+              {
+                "option_id": "b",
+                "text": "By next month, she will be working here for five years."
+              },
+              {
+                "option_id": "c",
+                "text": "By next month, she will have worked here for five years."
+              },
+              {
+                "option_id": "d",
+                "text": "By next month, she will be worked here for five years."
+              }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q11",
+            "question_text": "Identify the correct question form in the Present Perfect tense:",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "Have you ever visited London?"
+              },
+              {
+                "option_id": "b",
+                "text": "Did you ever visit London?"
+              },
+              {
+                "option_id": "c",
+                "text": "Do you ever visit London?"
+              },
+              {
+                "option_id": "d",
+                "text": "Are you ever visiting London?"
+              }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q12",
+            "question_text": "Choose the sentence with the correct use of Present Simple Passive:",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "The house is cleaned every day."
+              },
+              {
+                "option_id": "b",
+                "text": "The house cleans every day."
+              },
+              {
+                "option_id": "c",
+                "text": "The house cleaning every day."
+              },
+              {
+                "option_id": "d",
+                "text": "The house was cleaned every day."
+              }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q13",
+            "question_text": "Which sentence is correctly using Past Perfect Continuous passive voice?",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "The work had been being done for hours when they arrived."
+              },
+              {
+                "option_id": "b",
+                "text": "The work had been done for hours when they arrived."
+              },
+              {
+                "option_id": "c",
+                "text": "The work was being done for hours when they arrived."
+              },
+              {
+                "option_id": "d",
+                "text": "The work has been done for hours when they arrived."
+              }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q14",
+            "question_text": "Select the sentence correctly using Future Simple Passive:",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "The project will be completed by next week."
+              },
+              {
+                "option_id": "b",
+                "text": "The project will complete by next week."
+              },
+              {
+                "option_id": "c",
+                "text": "The project will be completing by next week."
+              },
+              {
+                "option_id": "d",
+                "text": "The project will have completed by next week."
+              }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q15",
+            "question_text": "Identify the sentence that correctly uses mixed tenses:",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "If I had studied harder, I would be passing the exam now."
+              },
+              {
+                "option_id": "b",
+                "text": "If I studied harder, I will pass the exam now."
+              },
+              {
+                "option_id": "c",
+                "text": "If I had studied harder, I would be passing the exam now."
+              },
+              {
+                "option_id": "d",
+                "text": "If I studied harder, I would have passed the exam."
+              }
+            ],
+            "correct_option_id": "c"
+          },
+          {
+            "question_id": "q16",
+            "question_text": "Which sentence correctly uses the Present Perfect Continuous to express duration?",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "He has been playing football for two hours."
+              },
+              {
+                "option_id": "b",
+                "text": "He is playing football for two hours."
+              },
+              {
+                "option_id": "c",
+                "text": "He was playing football for two hours."
+              },
+              {
+                "option_id": "d",
+                "text": "He played football for two hours."
+              }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q17",
+            "question_text": "Choose the correct use of Past Simple with time expressions:",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "I saw her yesterday."
+              },
+              {
+                "option_id": "b",
+                "text": "I have seen her yesterday."
+              },
+              {
+                "option_id": "c",
+                "text": "I had seen her yesterday."
+              },
+              {
+                "option_id": "d",
+                "text": "I see her yesterday."
+              }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q18",
+            "question_text": "Which sentence correctly uses the Future with 'going to' for plans?",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "I am going to visit my parents next weekend."
+              },
+              {
+                "option_id": "b",
+                "text": "I go to visit my parents next weekend."
+              },
+              {
+                "option_id": "c",
+                "text": "I will going to visit my parents next weekend."
+              },
+              {
+                "option_id": "d",
+                "text": "I will visit to my parents next weekend."
+              }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q19",
+            "question_text": "Identify the sentence that correctly uses Present Continuous to express future arrangements:",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "We are meeting them tomorrow."
+              },
+              {
+                "option_id": "b",
+                "text": "We meet them tomorrow."
+              },
+              {
+                "option_id": "c",
+                "text": "We will meet them tomorrow."
+              },
+              {
+                "option_id": "d",
+                "text": "We met them tomorrow."
+              }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q20",
+            "question_text": "Which sentence uses Present Perfect to express life experience?",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "I have been to Japan twice."
+              },
+              {
+                "option_id": "b",
+                "text": "I have gone to Japan twice."
+              },
+              {
+                "option_id": "c",
+                "text": "I went to Japan twice."
+              },
+              {
+                "option_id": "d",
+                "text": "I am going to Japan twice."
+              }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q21",
+            "question_text": "Choose the sentence that correctly uses Past Perfect with a clear time reference:",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "She had left by the time I arrived."
+              },
+              {
+                "option_id": "b",
+                "text": "She left by the time I arrived."
+              },
+              {
+                "option_id": "c",
+                "text": "She has left by the time I arrived."
+              },
+              {
+                "option_id": "d",
+                "text": "She leaves by the time I arrived."
+              }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q22",
+            "question_text": "Which sentence shows correct use of Present Simple for habits?",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "He goes to the gym every day."
+              },
+              {
+                "option_id": "b",
+                "text": "He is going to the gym every day."
+              },
+              {
+                "option_id": "c",
+                "text": "He went to the gym every day."
+              },
+              {
+                "option_id": "d",
+                "text": "He has gone to the gym every day."
+              }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q23",
+            "question_text": "Identify the sentence that uses Future Continuous for polite enquiries:",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "Will you be joining us for dinner?"
+              },
+              {
+                "option_id": "b",
+                "text": "Are you joining us for dinner?"
+              },
+              {
+                "option_id": "c",
+                "text": "Will you join us for dinner?"
+              },
+              {
+                "option_id": "d",
+                "text": "Do you join us for dinner?"
+              }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q24",
+            "question_text": "Which sentence correctly uses Past Continuous for two simultaneous actions?",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "I was cooking while he was cleaning."
+              },
+              {
+                "option_id": "b",
+                "text": "I cooked while he cleaned."
+              },
+              {
+                "option_id": "c",
+                "text": "I had cooked while he cleaned."
+              },
+              {
+                "option_id": "d",
+                "text": "I will be cooking while he cleans."
+              }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q25",
+            "question_text": "Choose the sentence correctly using Present Perfect for recent actions with 'just':",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "She has just left the office."
+              },
+              {
+                "option_id": "b",
+                "text": "She just left the office."
+              },
+              {
+                "option_id": "c",
+                "text": "She had just left the office."
+              },
+              {
+                "option_id": "d",
+                "text": "She is just leaving the office."
+              }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q26",
+            "question_text": "Identify the correct use of Past Perfect Continuous to express duration:",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "He had been waiting for two hours before the train arrived."
+              },
+              {
+                "option_id": "b",
+                "text": "He waited for two hours before the train arrived."
+              },
+              {
+                "option_id": "c",
+                "text": "He has been waiting for two hours before the train arrived."
+              },
+              {
+                "option_id": "d",
+                "text": "He was waiting for two hours before the train arrived."
+              }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q27",
+            "question_text": "Which sentence correctly uses Future Perfect Passive to indicate completion?",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "The documents will have been signed by tomorrow."
+              },
+              {
+                "option_id": "b",
+                "text": "The documents will be signed by tomorrow."
+              },
+              {
+                "option_id": "c",
+                "text": "The documents will have signed by tomorrow."
+              },
+              {
+                "option_id": "d",
+                "text": "The documents will be signing by tomorrow."
+              }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q28",
+            "question_text": "Choose the sentence with correct use of Present Simple for facts:",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "Water boils at 100 degrees Celsius."
+              },
+              {
+                "option_id": "b",
+                "text": "Water is boiling at 100 degrees Celsius."
+              },
+              {
+                "option_id": "c",
+                "text": "Water boiled at 100 degrees Celsius."
+              },
+              {
+                "option_id": "d",
+                "text": "Water will boil at 100 degrees Celsius."
+              }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q29",
+            "question_text": "Identify the sentence that correctly uses the passive form in Past Continuous:",
+            "options": [
+              {
+                "option_id": "a",
+                "text": "The house was being painted all day."
+              },
+              {
+                "option_id": "b",
+                "text": "The house was painted all day."
+              },
+              {
+                "option_id": "c",
+                "text": "The house is being painted all day."
+              },
+              {
+                "option_id": "d",
+                "text": "The house has been painted all day."
+              }
+            ],
+            "correct_option_id": "a"
+          }
+        ]
+      }
+    ]
+  }
+}

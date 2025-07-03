@@ -1,12 +1,24 @@
-<div class="container">
-  <h1>Topics List</h1>
-  <ul class="topics-list">
-    <li *ngFor="let topic of topics" (click)="openTopic(topic.id)" class="topic-item" tabindex="0">
-      <div class="topic-content">
-        <h3>{{ topic.name }}</h3>
-        <p>{{ topic.description }}</p>
-      </div>
-      <div class="arrow">›</div>
-    </li>
-  </ul>
+<div class="topics-wrapper">
+  <div class="topics-main">
+    <div class="topics-header">
+      <h1>Topics List</h1>
+    </div>
+
+    <ul class="topics-list">
+      <li
+        class="topic-item"
+        tabindex="0"
+        *ngFor="let topic of topics"
+        (click)="openTopic(topic.id)"
+        (keydown.enter)="openTopic(topic.id)"
+        (keydown.space)="openTopic(topic.id)"
+      >
+        <div class="topic-content">
+          <h3>{{ topic.name }}</h3>
+          <p>{{ topic.description }}</p>
+        </div>
+        <div class="topic-arrow">›</div>
+      </li>
+    </ul>
+  </div>
 </div>

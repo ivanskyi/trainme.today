@@ -1,41 +1,110 @@
-<div class="container" *ngIf="topic">
-  <h1>{{ topic.name }}</h1>
-  <p>{{ topic.description }}</p>
+<div class="quiz-wrapper" *ngIf="topic">
+  <main class="quiz-main" *ngIf="topic.tests.length > 0">
+    <section class="test-header">
+      <h2>{{ topic.tests[currentTestIndex].test_title }}</h2>
+    </section>
 
-  <div *ngIf="topic.tests.length > 0">
-    <h2>{{ topic.tests[currentTestIndex].test_title }}</h2>
-
-    <div class="progress">
-      <div class="progress-bar"
-           [style.width.%]="
-             ((currentQuestionIndex + 1) / topic.tests[currentTestIndex].questions.length) * 100">
+    <div class="progress-bar-container">
+      <div
+        class="progress-bar"
+        [style.width.%]="((currentQuestionIndex + 1) / topic.tests[currentTestIndex].questions.length) * 100">
       </div>
-      <p>Question {{ currentQuestionIndex + 1 }} / {{ topic.tests[currentTestIndex].questions.length }}</p>
+      <p class="progress-label">
+        Question {{ currentQuestionIndex + 1 }} / {{ topic.tests[currentTestIndex].questions.length }}
+      </p>
     </div>
 
-    <div class="question-block">
-      <p><strong>{{ topic.tests[currentTestIndex].questions[currentQuestionIndex].question_text }}</strong></p>
-      <ul>
-        <li *ngFor="let option of topic.tests[currentTestIndex].questions[currentQuestionIndex].options"
-            (click)="selectOption(topic.tests[currentTestIndex].questions[currentQuestionIndex].question_id, option.option_id)"
-            [class.selected]="answers[topic.tests[currentTestIndex].questions[currentQuestionIndex].question_id] === option.option_id">
-          {{ option.text }}
+    <section class="question-section" *ngIf="!showResults">
+      <div class="question-number">
+        Q{{ currentQuestionIndex + 1 }}
+      </div>
+      <p class="question-text">
+        {{ topic.tests[currentTestIndex].questions[currentQuestionIndex].question_text }}
+      </p>
+      <ul class="options-list">
+        <li
+          *ngFor="let option of topic.tests[currentTestIndex].questions[currentQuestionIndex].options; let i = index"
+          (click)="selectOption(
+            topic.tests[currentTestIndex].questions[currentQuestionIndex].question_id,
+            option.option_id
+          )"
+          [class.selected]="
+            answers[topic.tests[currentTestIndex].questions[currentQuestionIndex].question_id] === option.option_id
+          "
+          class="option-item">
+          <span class="option-letter">{{ getOptionLetter(i) }}</span>
+          <span class="option-text">{{ option.text }}</span>
         </li>
       </ul>
-    </div>
+    </section>
 
-    <div class="navigation">
-      <button (click)="prevQuestion()" [disabled]="currentQuestionIndex === 0">Previous Question</button>
-      <button (click)="nextQuestion()" [disabled]="currentQuestionIndex === topic.tests[currentTestIndex].questions.length - 1">Next Question</button>
-    </div>
+    <section class="navigation-buttons" *ngIf="!showResults">
+      <button
+        (click)="prevQuestion()"
+        [disabled]="currentQuestionIndex === 0"
+        class="nav-btn prev-btn">
+        <span class="btn-icon">←</span>
+        <span class="btn-text">Previous</span>
+      </button>
+      <button
+        (click)="nextQuestion()"
+        [disabled]="currentQuestionIndex === topic.tests[currentTestIndex].questions.length - 1"
+        class="nav-btn next-btn">
+        <span class="btn-text">Next</span>
+        <span class="btn-icon">→</span>
+      </button>
+    </section>
 
-    <div class="result" *ngIf="result !== null && currentQuestionIndex === topic.tests[currentTestIndex].questions.length - 1">
-      <p>Your score: {{ result }} / {{ topic.tests[currentTestIndex].questions.length }}</p>
-    </div>
+    <section class="result-section" *ngIf="showResults">
+      <div class="score-container">
+        <div class="score-circle">
+          <span class="score-text">{{ result }}</span>
+          <span class="score-divider">/</span>
+          <span class="score-total">{{ topic.tests[currentTestIndex].questions.length }}</span>
+        </div>
+        <p class="score-percentage">
+          {{ ((result! / topic.tests[currentTestIndex].questions.length) * 100).toFixed(0) }}%
+        </p>
+      </div>
 
-    <div class="test-navigation">
-      <button (click)="prevTest()" [disabled]="currentTestIndex === 0">Previous Test</button>
-      <button (click)="nextTest()" [disabled]="currentTestIndex === topic.tests.length - 1">Next Test</button>
-    </div>
-  </div>
+      <div class="wrong-answers" *ngIf="wrongQuestions.length > 0">
+        <h3>Review Incorrect Answers</h3>
+        <ul class="wrong-list">
+          <li *ngFor="let q of wrongQuestions" class="wrong-item">
+            <span class="wrong-icon">✗</span>
+            <span class="wrong-text">{{ q.question_text }}</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="result-actions">
+        <button (click)="restartCurrentTest()" class="restart-button">
+          <span class="restart-icon">⟲</span>
+          Restart Test
+        </button>
+      </div>
+    </section>
+
+    <section class="test-navigation">
+      <button
+        (click)="prevTest()"
+        [disabled]="currentTestIndex === 0"
+        class="test-nav-btn">
+        <span class="test-nav-icon">⟵</span>
+        <span class="test-nav-text">Previous Test</span>
+      </button>
+      <button
+        (click)="nextTest()"
+        [disabled]="currentTestIndex === topic.tests.length - 1"
+        class="test-nav-btn">
+        <span class="test-nav-text">Next Test</span>
+        <span class="test-nav-icon">⟶</span>
+      </button>
+    </section>
+
+    <button class="reset-button" (click)="clearTestProgress()">
+      <span class="reset-icon">⟲</span>
+      Clear Progress
+    </button>
+  </main>
 </div>

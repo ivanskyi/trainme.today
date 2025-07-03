@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 
 interface Option {
   option_id: string;
@@ -32,67 +33,114 @@ interface Topic {
   styleUrls: ['./topic.component.scss']
 })
 export class TopicComponent implements OnInit {
-
   topic: Topic | null = null;
   currentTestIndex = 0;
   currentQuestionIndex = 0;
   answers: { [questionId: string]: string } = {};
   result: number | null = null;
+  showResults = false;
+  wrongQuestions: Question[] = [];
 
-  constructor(private http: HttpClient) {}
+  private topicId: string | null = null;
+
+  constructor(private http: HttpClient, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.http.get<{ topic: Topic }>('assets/topics/topic.json').subscribe(data => {
-      this.topic = data.topic;
-      this.loadAnswers();
+    this.route.queryParamMap.subscribe(params => {
+      this.topicId = params.get('id');
+      if (this.topicId) {
+        this.loadTopic(this.topicId);
+      }
     });
+  }
+
+  loadTopic(id: string) {
+    this.http.get<{ topic: Topic }>(`assets/topics/${id}.json`).subscribe({
+      next: data => {
+        this.topic = data.topic;
+        this.loadAnswers();
+      },
+      error: err => {
+        console.error('Error loading topic JSON:', err);
+      }
+    });
+  }
+
+  getOptionLetter(index: number): string {
+    return String.fromCharCode(65 + index);
   }
 
   selectOption(questionId: string, optionId: string) {
     this.answers[questionId] = optionId;
     this.saveAnswers();
-    this.calculateResult();
+
+    if (this.currentQuestionIndex < this.topic!.tests[this.currentTestIndex].questions.length - 1) {
+      setTimeout(() => {
+        this.currentQuestionIndex++;
+        this.saveAnswers();
+      }, 300);
+    } else {
+      setTimeout(() => {
+        this.finishTest();
+      }, 300);
+    }
   }
 
   saveAnswers() {
-    localStorage.setItem('testAnswers', JSON.stringify(this.answers));
-    localStorage.setItem('currentQuestionIndex', this.currentQuestionIndex.toString());
-    localStorage.setItem('currentTestIndex', this.currentTestIndex.toString());
+    const state = {
+      answers: this.answers,
+      currentQuestionIndex: this.currentQuestionIndex,
+      currentTestIndex: this.currentTestIndex,
+      showResults: this.showResults
+    };
+
+    localStorage.setItem('quizState', JSON.stringify(state));
   }
 
   loadAnswers() {
-    const savedAnswers = localStorage.getItem('testAnswers');
-    const savedQuestionIndex = localStorage.getItem('currentQuestionIndex');
-    const savedTestIndex = localStorage.getItem('currentTestIndex');
+    const savedState = localStorage.getItem('quizState');
 
-    if (savedAnswers) {
-      this.answers = JSON.parse(savedAnswers);
-      this.calculateResult();
-    }
-    if (savedQuestionIndex) {
-      this.currentQuestionIndex = +savedQuestionIndex;
-    }
-    if (savedTestIndex) {
-      this.currentTestIndex = +savedTestIndex;
+    if (savedState) {
+      try {
+        const state = JSON.parse(savedState);
+        this.answers = state.answers || {};
+        this.currentQuestionIndex = state.currentQuestionIndex || 0;
+        this.currentTestIndex = state.currentTestIndex || 0;
+        this.showResults = state.showResults || false;
+
+        if (this.showResults) {
+          this.calculateResult();
+        }
+      } catch (error) {
+        console.error('Error loading saved state:', error);
+        this.resetTestState();
+      }
     }
   }
 
   calculateResult() {
     if (!this.topic) return;
-    const test = this.topic.tests[this.currentTestIndex];
-    if (!test) return;
 
+    const test = this.topic.tests[this.currentTestIndex];
     let correctCount = 0;
-    for (const q of test.questions) {
-      if (this.answers[q.question_id] === q.correct_option_id) {
+    this.wrongQuestions = [];
+
+    for (const question of test.questions) {
+      const userAnswer = this.answers[question.question_id];
+
+      if (userAnswer === question.correct_option_id) {
         correctCount++;
+      } else if (userAnswer) {
+        this.wrongQuestions.push(question);
       }
     }
+
     this.result = correctCount;
   }
 
   nextQuestion() {
     if (!this.topic) return;
+
     const questions = this.topic.tests[this.currentTestIndex].questions;
     if (this.currentQuestionIndex < questions.length - 1) {
       this.currentQuestionIndex++;
@@ -109,23 +157,72 @@ export class TopicComponent implements OnInit {
 
   nextTest() {
     if (!this.topic) return;
+
     if (this.currentTestIndex < this.topic.tests.length - 1) {
       this.currentTestIndex++;
-      this.currentQuestionIndex = 0;
-      this.answers = {};
-      this.result = null;
-      this.saveAnswers();
+      this.resetTestState();
     }
   }
 
   prevTest() {
     if (!this.topic) return;
+
     if (this.currentTestIndex > 0) {
       this.currentTestIndex--;
-      this.currentQuestionIndex = 0;
-      this.answers = {};
-      this.result = null;
-      this.saveAnswers();
+      this.resetTestState();
     }
+  }
+
+  resetTestState() {
+    this.currentQuestionIndex = 0;
+    this.answers = {};
+    this.result = null;
+    this.showResults = false;
+    this.wrongQuestions = [];
+    this.saveAnswers();
+  }
+
+  clearTestProgress() {
+    localStorage.removeItem('quizState');
+    this.currentTestIndex = 0;
+    this.resetTestState();
+  }
+
+  finishTest() {
+    this.calculateResult();
+    this.showResults = true;
+    this.saveAnswers();
+  }
+
+  restartCurrentTest() {
+    this.resetTestState();
+  }
+
+  getProgressPercentage(): number {
+    if (!this.topic) return 0;
+
+    const totalQuestions = this.topic.tests[this.currentTestIndex].questions.length;
+    return ((this.currentQuestionIndex + 1) / totalQuestions) * 100;
+  }
+
+  getScorePercentage(): number {
+    if (!this.topic || this.result === null) return 0;
+
+    const totalQuestions = this.topic.tests[this.currentTestIndex].questions.length;
+    return (this.result / totalQuestions) * 100;
+  }
+
+  isCurrentQuestionAnswered(): boolean {
+    if (!this.topic) return false;
+
+    const currentQuestion = this.topic.tests[this.currentTestIndex].questions[this.currentQuestionIndex];
+    return !!this.answers[currentQuestion.question_id];
+  }
+
+  getAnsweredCount(): number {
+    if (!this.topic) return 0;
+
+    const questions = this.topic.tests[this.currentTestIndex].questions;
+    return questions.filter(q => this.answers[q.question_id]).length;
   }
 }
