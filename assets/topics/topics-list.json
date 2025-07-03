@@ -1,12 +1,12 @@
 [
   {
-    "id": "java-core",
-    "name": "Java Core",
-    "description": "Основи Java для middle розробника"
+    "id": "english_c1_grammar",
+    "name": "English Grammar - Tenses Mastery Test",
+    "description": "Advanced test on English tenses"
   },
   {
-    "id": "java-collections",
-    "name": "Java Collections",
-    "description": "Колекції та робота з ними"
+    "id": "english_c1_conditions",
+    "name": "English Grammar - Conditionals Mastery Test",
+    "description": "Advanced test on English conditionals"
   }
 ]
