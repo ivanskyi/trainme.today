@@ -1,0 +1,235 @@
+{
+  "topic": {
+    "id": "structural_patterns_ukr",
+    "name": "Структурні Патерни",
+    "description": "Тест з 20 запитань про структурні патерни проектування",
+    "tests": [
+      {
+        "test_id": "structural_test_20",
+        "test_title": "Тест зі Структурних патернів",
+        "questions": [
+          {
+            "question_id": "q1",
+            "question_text": "Яка основна мета патерну Adapter?",
+            "options": [
+              { "option_id": "a", "text": "Перетворити інтерфейс класу в інтерфейс, який очікує клієнт" },
+              { "option_id": "b", "text": "Об’єднати кілька об’єктів в один" },
+              { "option_id": "c", "text": "Дозволити взаємодію між незалежними об’єктами" },
+              { "option_id": "d", "text": "Розділити складний об’єкт на прості частини" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q2",
+            "question_text": "Що робить патерн Composite?",
+            "options": [
+              { "option_id": "a", "text": "Об’єднує об’єкти в деревоподібну структуру для представлення ієрархії" },
+              { "option_id": "b", "text": "Додає нові функції до об’єкта динамічно" },
+              { "option_id": "c", "text": "Обмежує кількість створюваних об’єктів" },
+              { "option_id": "d", "text": "Перетворює інтерфейс класу" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q3",
+            "question_text": "Патерн Decorator призначений для:",
+            "options": [
+              { "option_id": "a", "text": "Динамічного додавання нової поведінки об’єкту" },
+              { "option_id": "b", "text": "Створення об’єктів без визначення конкретних класів" },
+              { "option_id": "c", "text": "Організації взаємодії між об’єктами" },
+              { "option_id": "d", "text": "Об’єднання кількох об’єктів в один" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q4",
+            "question_text": "Яка роль патерну Facade?",
+            "options": [
+              { "option_id": "a", "text": "Надає спрощений інтерфейс до складної системи" },
+              { "option_id": "b", "text": "Дозволяє взаємодіяти між різними об’єктами" },
+              { "option_id": "c", "text": "Перетворює інтерфейс класу" },
+              { "option_id": "d", "text": "Копіює об’єкти" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q5",
+            "question_text": "Що забезпечує патерн Flyweight?",
+            "options": [
+              { "option_id": "a", "text": "Зменшення використання пам’яті шляхом спільного використання однакових об’єктів" },
+              { "option_id": "b", "text": "Динамічне додавання поведінки" },
+              { "option_id": "c", "text": "Створення складних об’єктів" },
+              { "option_id": "d", "text": "Об’єднання об’єктів в ієрархію" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q6",
+            "question_text": "Патерн Proxy використовується для:",
+            "options": [
+              { "option_id": "a", "text": "Заміни іншого об’єкта для контролю доступу" },
+              { "option_id": "b", "text": "Об’єднання об’єктів в структуру" },
+              { "option_id": "c", "text": "Перетворення інтерфейсу класу" },
+              { "option_id": "d", "text": "Створення нових об’єктів" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q7",
+            "question_text": "Яка відмінність між патернами Adapter і Proxy?",
+            "options": [
+              { "option_id": "a", "text": "Adapter змінює інтерфейс об’єкта, Proxy контролює доступ до об’єкта" },
+              { "option_id": "b", "text": "Proxy змінює інтерфейс, Adapter контролює доступ" },
+              { "option_id": "c", "text": "Обидва контролюють доступ" },
+              { "option_id": "d", "text": "Обидва змінюють інтерфейс" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q8",
+            "question_text": "Патерн Bridge допомагає:",
+            "options": [
+              { "option_id": "a", "text": "Відокремити абстракцію від її реалізації" },
+              { "option_id": "b", "text": "Динамічно додати поведінку" },
+              { "option_id": "c", "text": "Об’єднати об’єкти в ієрархію" },
+              { "option_id": "d", "text": "Контролювати доступ до об’єкта" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q9",
+            "question_text": "Що є основним результатом застосування патерну Composite?",
+            "options": [
+              { "option_id": "a", "text": "Обробка груп об’єктів та окремих об’єктів однаковим чином" },
+              { "option_id": "b", "text": "Зменшення пам’яті через спільне використання" },
+              { "option_id": "c", "text": "Контроль доступу до об’єктів" },
+              { "option_id": "d", "text": "Створення складних об’єктів поетапно" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q10",
+            "question_text": "Патерн Decorator і Facade мають спільне, що:",
+            "options": [
+              { "option_id": "a", "text": "Обидва працюють з інтерфейсом об’єкта" },
+              { "option_id": "b", "text": "Обидва створюють складні структури" },
+              { "option_id": "c", "text": "Обидва приховують складність системи" },
+              { "option_id": "d", "text": "Обидва змінюють інтерфейс клієнта" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q11",
+            "question_text": "Яка з характеристик патерну Flyweight?",
+            "options": [
+              { "option_id": "a", "text": "Економія пам’яті за рахунок спільного використання" },
+              { "option_id": "b", "text": "Додавання нової поведінки" },
+              { "option_id": "c", "text": "Перетворення інтерфейсу" },
+              { "option_id": "d", "text": "Контроль доступу" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q12",
+            "question_text": "Що відбувається в патерні Proxy, якщо клієнт викликає метод об’єкта?",
+            "options": [
+              { "option_id": "a", "text": "Proxy контролює або керує викликом, іноді додаючи додаткову логіку" },
+              { "option_id": "b", "text": "Proxy змінює інтерфейс клієнта" },
+              { "option_id": "c", "text": "Proxy об’єднує кілька об’єктів в один" },
+              { "option_id": "d", "text": "Proxy створює новий об’єкт" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q13",
+            "question_text": "Яка перевага використання патерну Facade?",
+            "options": [
+              { "option_id": "a", "text": "Сприяє зменшенню залежностей між підсистемами" },
+              { "option_id": "b", "text": "Контролює доступ до об’єктів" },
+              { "option_id": "c", "text": "Дозволяє динамічно додавати поведінку" },
+              { "option_id": "d", "text": "Зменшує кількість об’єктів" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q14",
+            "question_text": "Як патерн Bridge допомагає у підтримці програмного коду?",
+            "options": [
+              { "option_id": "a", "text": "Розділяє абстракцію і реалізацію, дозволяючи змінювати їх незалежно" },
+              { "option_id": "b", "text": "Об’єднує об’єкти в ієрархію" },
+              { "option_id": "c", "text": "Зменшує використання пам’яті" },
+              { "option_id": "d", "text": "Додає нову поведінку в рантаймі" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q15",
+            "question_text": "Патерн Adapter часто використовується, коли потрібно:",
+            "options": [
+              { "option_id": "a", "text": "Підлаштувати несумісні інтерфейси" },
+              { "option_id": "b", "text": "Створити складний об’єкт" },
+              { "option_id": "c", "text": "Обмежити доступ до об’єкта" },
+              { "option_id": "d", "text": "Створити єдиний екземпляр" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q16",
+            "question_text": "Що таке прозоре додавання поведінки в патерні Decorator?",
+            "options": [
+              { "option_id": "a", "text": "Додавання функціональності без зміни інтерфейсу клієнта" },
+              { "option_id": "b", "text": "Створення нових класів" },
+              { "option_id": "c", "text": "Перетворення інтерфейсу" },
+              { "option_id": "d", "text": "Обмеження кількості екземплярів" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q17",
+            "question_text": "Яка основна мета патерну Composite?",
+            "options": [
+              { "option_id": "a", "text": "Дозволити однаковим чином працювати з окремими об’єктами і їх групами" },
+              { "option_id": "b", "text": "Зменшити кількість об’єктів" },
+              { "option_id": "c", "text": "Додати поведінку в рантаймі" },
+              { "option_id": "d", "text": "Обмежити доступ до об’єкта" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q18",
+            "question_text": "Як патерн Flyweight знижує навантаження на пам’ять?",
+            "options": [
+              { "option_id": "a", "text": "Спільним використанням однакових об’єктів" },
+              { "option_id": "b", "text": "Відкладеним створенням об’єктів" },
+              { "option_id": "c", "text": "Обмеженням доступу до об’єктів" },
+              { "option_id": "d", "text": "Динамічним додаванням поведінки" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q19",
+            "question_text": "Що спільного у патернів Proxy і Decorator?",
+            "options": [
+              { "option_id": "a", "text": "Обидва надають обгортку навколо об’єкта" },
+              { "option_id": "b", "text": "Обидва змінюють інтерфейс" },
+              { "option_id": "c", "text": "Обидва обмежують створення об’єктів" },
+              { "option_id": "d", "text": "Обидва створюють складні об’єкти" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q20",
+            "question_text": "Який патерн найкраще підходить для створення простого інтерфейсу до складної системи?",
+            "options": [
+              { "option_id": "a", "text": "Facade" },
+              { "option_id": "b", "text": "Adapter" },
+              { "option_id": "c", "text": "Composite" },
+              { "option_id": "d", "text": "Proxy" }
+            ],
+            "correct_option_id": "a"
+          }
+        ]
+      }
+    ]
+  }
+}

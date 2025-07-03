@@ -1,12 +1,52 @@
 [
   {
-    "id": "english_c1_grammar",
-    "name": "English Grammar - Tenses Mastery Test",
-    "description": "Advanced test on English tenses"
+    "id": "creational_patterns_ukr",
+    "name": "Creational Патерни",
+    "description": "20 запитань про шаблони створення об'єктів"
   },
   {
-    "id": "english_c1_conditions",
-    "name": "English Grammar - Conditionals Mastery Test",
-    "description": "Advanced test on English conditionals"
+    "id": "structural_patterns_ukr",
+    "name": "Structural Патерни",
+    "description": "20 запитань про структурні шаблони"
+  },
+  {
+    "id": "behavioral_patterns_ukr",
+    "name": "Поведінкові Патерни",
+    "description": "20 запитань про поведінкові шаблони"
+  },
+  {
+    "id": "git_mid_senior_ukr",
+    "name": "Git для Middle/Senior розробника",
+    "description": "20 запитань про Git на продвинутому рівні"
+  },
+  {
+    "id": "testing_junit_mockito_ukr",
+    "name": "Тестування в Java (JUnit, Mockito)",
+    "description": "20 запитань про JUnit і Mockito"
+  },
+  {
+    "id": "bitwise_java_ua",
+    "name": "Побітові операції в Java",
+    "description": "20 запитань про побітову логіку та зсуви"
+  },
+  {
+    "id": "java_collections_ua",
+    "name": "Java Collections",
+    "description": "30 запитань про колекції у Java"
+  },
+  {
+    "id": "solid_principles_java",
+    "name": "SOLID Принципи",
+    "description": "20 запитань про принципи SOLID у Java"
+  },
+  {
+    "id": "acid_transactions",
+    "name": "ACID-принципи транзакцій",
+    "description": "20 запитань про транзакції й ACID"
+  },
+  {
+    "id": "spring_security",
+    "name": "Spring Security",
+    "description": "20 запитань про безпеку у Spring"
   }
 ]

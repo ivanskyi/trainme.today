@@ -1,0 +1,348 @@
+{
+  "topic": {
+    "id": "java_collections_ua",
+    "name": "Java Collections",
+    "description": "30 запитань по Java Collections для Junior/Middle/Senior",
+    "tests": [
+      {
+        "test_id": "java_collections_test",
+        "test_title": "Java Collections: повний тест",
+        "questions": [
+          {
+            "question_id": "q1",
+            "question_text": "Який інтерфейс є батьківським для всіх колекцій у Java (окрім Map)?",
+            "options": [
+              { "option_id": "a", "text": "Collection" },
+              { "option_id": "b", "text": "Iterable" },
+              { "option_id": "c", "text": "List" },
+              { "option_id": "d", "text": "Map" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q2",
+            "question_text": "Яка структура даних гарантує збереження порядку вставки елементів?",
+            "options": [
+              { "option_id": "a", "text": "LinkedHashSet" },
+              { "option_id": "b", "text": "HashSet" },
+              { "option_id": "c", "text": "TreeSet" },
+              { "option_id": "d", "text": "PriorityQueue" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q3",
+            "question_text": "Який метод видаляє всі елементи з колекції?",
+            "options": [
+              { "option_id": "a", "text": "clear()" },
+              { "option_id": "b", "text": "removeAll()" },
+              { "option_id": "c", "text": "delete()" },
+              { "option_id": "d", "text": "reset()" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q4",
+            "question_text": "Яка реалізація List є потокобезпечною за замовчуванням?",
+            "options": [
+              { "option_id": "a", "text": "Vector" },
+              { "option_id": "b", "text": "ArrayList" },
+              { "option_id": "c", "text": "LinkedList" },
+              { "option_id": "d", "text": "Stack" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q5",
+            "question_text": "Що повертає метод `Map.get(key)` якщо ключ відсутній?",
+            "options": [
+              { "option_id": "a", "text": "null" },
+              { "option_id": "b", "text": "Exception" },
+              { "option_id": "c", "text": "0" },
+              { "option_id": "d", "text": "-1" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q6",
+            "question_text": "Чим відрізняється HashMap від TreeMap?",
+            "options": [
+              { "option_id": "a", "text": "TreeMap зберігає ключі в відсортованому порядку" },
+              { "option_id": "b", "text": "HashMap повільніший" },
+              { "option_id": "c", "text": "TreeMap не підтримує null" },
+              { "option_id": "d", "text": "HashMap є потокобезпечним" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q7",
+            "question_text": "Який тип Set не дозволяє null елементів?",
+            "options": [
+              { "option_id": "a", "text": "TreeSet" },
+              { "option_id": "b", "text": "HashSet" },
+              { "option_id": "c", "text": "LinkedHashSet" },
+              { "option_id": "d", "text": "EnumSet" }
+            ],
+            "correct_option_id": "d"
+          },
+          {
+            "question_id": "q8",
+            "question_text": "Що буде результатом `new HashSet<>(Arrays.asList(1,2,2,3))`?",
+            "options": [
+              { "option_id": "a", "text": "[1, 2, 3]" },
+              { "option_id": "b", "text": "[1, 2, 2, 3]" },
+              { "option_id": "c", "text": "[3, 2, 1, 2]" },
+              { "option_id": "d", "text": "[1, 3]" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q9",
+            "question_text": "Яка структура краще підходить для реалізації черги (FIFO)?",
+            "options": [
+              { "option_id": "a", "text": "LinkedList" },
+              { "option_id": "b", "text": "ArrayList" },
+              { "option_id": "c", "text": "HashSet" },
+              { "option_id": "d", "text": "TreeSet" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q10",
+            "question_text": "Який з варіантів є валідним способом ітерації по Map?",
+            "options": [
+              { "option_id": "a", "text": "for (Map.Entry<K, V> e : map.entrySet())" },
+              { "option_id": "b", "text": "for (K key : map)" },
+              { "option_id": "c", "text": "for (V value : map.getValues())" },
+              { "option_id": "d", "text": "foreach (K k, V v : map)" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q11",
+            "question_text": "Який метод додає всі елементи іншої колекції?",
+            "options": [
+              { "option_id": "a", "text": "addAll()" },
+              { "option_id": "b", "text": "insertAll()" },
+              { "option_id": "c", "text": "merge()" },
+              { "option_id": "d", "text": "append()" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q12",
+            "question_text": "Яка з колекцій дозволяє дублікати?",
+            "options": [
+              { "option_id": "a", "text": "List" },
+              { "option_id": "b", "text": "Set" },
+              { "option_id": "c", "text": "Map" },
+              { "option_id": "d", "text": "EnumSet" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q13",
+            "question_text": "Чи дозволяє HashMap null ключі та значення?",
+            "options": [
+              { "option_id": "a", "text": "1 null ключ і багато null значень" },
+              { "option_id": "b", "text": "Не дозволяє null" },
+              { "option_id": "c", "text": "Лише null значення" },
+              { "option_id": "d", "text": "Тільки null ключі" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q14",
+            "question_text": "Як видалити елемент з Map по ключу?",
+            "options": [
+              { "option_id": "a", "text": "remove(key)" },
+              { "option_id": "b", "text": "delete(key)" },
+              { "option_id": "c", "text": "drop(key)" },
+              { "option_id": "d", "text": "unset(key)" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q15",
+            "question_text": "Який тип колекції можна створити з `Collections.unmodifiableList(list)`?",
+            "options": [
+              { "option_id": "a", "text": "Немодифікована List" },
+              { "option_id": "b", "text": "List без дублікатив" },
+              { "option_id": "c", "text": "Stream" },
+              { "option_id": "d", "text": "Колекція для паралельного доступу" }
+            ],
+            "correct_option_id": "a"
+          },
+
+          // продовження (15 наступних запитань)...
+
+          {
+            "question_id": "q16",
+            "question_text": "Яка реалізація Set автоматично сортує елементи?",
+            "options": [
+              { "option_id": "a", "text": "TreeSet" },
+              { "option_id": "b", "text": "HashSet" },
+              { "option_id": "c", "text": "LinkedHashSet" },
+              { "option_id": "d", "text": "EnumSet" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q17",
+            "question_text": "Яка реалізація Map підтримує порядок доступу (LRU)?",
+            "options": [
+              { "option_id": "a", "text": "LinkedHashMap" },
+              { "option_id": "b", "text": "TreeMap" },
+              { "option_id": "c", "text": "ConcurrentHashMap" },
+              { "option_id": "d", "text": "HashMap" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q18",
+            "question_text": "Яка структура підходить для реалізації стека?",
+            "options": [
+              { "option_id": "a", "text": "Deque" },
+              { "option_id": "b", "text": "PriorityQueue" },
+              { "option_id": "c", "text": "HashSet" },
+              { "option_id": "d", "text": "EnumSet" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q19",
+            "question_text": "Як створити синхронізований список?",
+            "options": [
+              { "option_id": "a", "text": "Collections.synchronizedList(list)" },
+              { "option_id": "b", "text": "new SynchronizedList(list)" },
+              { "option_id": "c", "text": "list.lock()" },
+              { "option_id": "d", "text": "List.sync(list)" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q20",
+            "question_text": "Що таке fail-fast ітератор?",
+            "options": [
+              { "option_id": "a", "text": "Викидає ConcurrentModificationException при зміні колекції під час ітерації" },
+              { "option_id": "b", "text": "Автоматично відновлює індексацію" },
+              { "option_id": "c", "text": "Повільний, але точний" },
+              { "option_id": "d", "text": "Ігнорує зміни колекції" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q21",
+            "question_text": "Який тип колекції підходить для зберігання пар ключ-значення з можливістю паралельного доступу?",
+            "options": [
+              { "option_id": "a", "text": "ConcurrentHashMap" },
+              { "option_id": "b", "text": "TreeMap" },
+              { "option_id": "c", "text": "HashTable" },
+              { "option_id": "d", "text": "HashSet" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q22",
+            "question_text": "Який тип дозволяє дублікат ключів?",
+            "options": [
+              { "option_id": "a", "text": "Multimap (Guava)" },
+              { "option_id": "b", "text": "HashMap" },
+              { "option_id": "c", "text": "TreeMap" },
+              { "option_id": "d", "text": "EnumMap" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q23",
+            "question_text": "Що таке NavigableMap?",
+            "options": [
+              { "option_id": "a", "text": "Розширення SortedMap з методами для пошуку найближчих значень" },
+              { "option_id": "b", "text": "Інтерфейс для двосторонніх карт" },
+              { "option_id": "c", "text": "Мапа без дублікатив" },
+              { "option_id": "d", "text": "Синхронізована мапа" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q24",
+            "question_text": "Яка реалізація `Queue` гарантує природне сортування?",
+            "options": [
+              { "option_id": "a", "text": "PriorityQueue" },
+              { "option_id": "b", "text": "LinkedList" },
+              { "option_id": "c", "text": "Deque" },
+              { "option_id": "d", "text": "ConcurrentLinkedQueue" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q25",
+            "question_text": "Яка структура не є частиною Java Collections Framework?",
+            "options": [
+              { "option_id": "a", "text": "Dictionary" },
+              { "option_id": "b", "text": "List" },
+              { "option_id": "c", "text": "Set" },
+              { "option_id": "d", "text": "Queue" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q26",
+            "question_text": "Що таке IdentityHashMap?",
+            "options": [
+              { "option_id": "a", "text": "Порівнює ключі по посиланню, а не equals()" },
+              { "option_id": "b", "text": "Підтримує LRU-кеш" },
+              { "option_id": "c", "text": "Потокобезпечна мапа" },
+              { "option_id": "d", "text": "Використовує hashCode на значеннях" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q27",
+            "question_text": "Яка реалізація Set є найшвидшою для перевірки наявності елемента?",
+            "options": [
+              { "option_id": "a", "text": "HashSet" },
+              { "option_id": "b", "text": "TreeSet" },
+              { "option_id": "c", "text": "LinkedHashSet" },
+              { "option_id": "d", "text": "EnumSet" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q28",
+            "question_text": "Який метод перевіряє, чи порожня колекція?",
+            "options": [
+              { "option_id": "a", "text": "isEmpty()" },
+              { "option_id": "b", "text": "empty()" },
+              { "option_id": "c", "text": "size() == 0" },
+              { "option_id": "d", "text": "hasElements()" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q29",
+            "question_text": "Що повертає `Collections.singletonList(\"a\")`?",
+            "options": [
+              { "option_id": "a", "text": "List з одним елементом" },
+              { "option_id": "b", "text": "Порожній List" },
+              { "option_id": "c", "text": "Immutable Map" },
+              { "option_id": "d", "text": "List з двома однаковими елементами" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q30",
+            "question_text": "Який тип найкраще використовувати для enum → значення?",
+            "options": [
+              { "option_id": "a", "text": "EnumMap" },
+              { "option_id": "b", "text": "HashMap" },
+              { "option_id": "c", "text": "TreeMap" },
+              { "option_id": "d", "text": "Hashtable" }
+            ],
+            "correct_option_id": "a"
+          }
+        ]
+      }
+    ]
+  }
+}

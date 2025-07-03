@@ -1,0 +1,235 @@
+{
+  "topic": {
+    "id": "spring_security",
+    "name": "Spring Security",
+    "description": "20 запитань для перевірки знань Spring Security у Java",
+    "tests": [
+      {
+        "test_id": "spring_security_test",
+        "test_title": "Тест з Spring Security",
+        "questions": [
+          {
+            "question_id": "q1",
+            "question_text": "Яка основна мета Spring Security?",
+            "options": [
+              { "option_id": "a", "text": "Аутентифікація та авторизація користувачів" },
+              { "option_id": "b", "text": "Створення REST API" },
+              { "option_id": "c", "text": "Побудова шаблонів HTML" },
+              { "option_id": "d", "text": "Обробка винятків у сервісі" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q2",
+            "question_text": "Який клас використовується для конфігурації безпеки у Spring Boot 3+?",
+            "options": [
+              { "option_id": "a", "text": "SecurityFilterChain" },
+              { "option_id": "b", "text": "WebSecurityConfigurerAdapter" },
+              { "option_id": "c", "text": "SecurityManager" },
+              { "option_id": "d", "text": "SecurityContextHolder" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q3",
+            "question_text": "Який компонент відповідає за зберігання інформації про поточного користувача?",
+            "options": [
+              { "option_id": "a", "text": "SecurityContextHolder" },
+              { "option_id": "b", "text": "HttpSession" },
+              { "option_id": "c", "text": "ApplicationContext" },
+              { "option_id": "d", "text": "AuthenticationProvider" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q4",
+            "question_text": "Як додати BASIC автентифікацію в Spring Security?",
+            "options": [
+              { "option_id": "a", "text": ".httpBasic()" },
+              { "option_id": "b", "text": ".formLogin()" },
+              { "option_id": "c", "text": ".oauth2Login()" },
+              { "option_id": "d", "text": ".cors()" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q5",
+            "question_text": "Який метод застосовується для відключення CSRF захисту?",
+            "options": [
+              { "option_id": "a", "text": ".csrf().disable()" },
+              { "option_id": "b", "text": ".disableCsrf()" },
+              { "option_id": "c", "text": ".csrf().off()" },
+              { "option_id": "d", "text": ".noCsrf()" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q6",
+            "question_text": "Який інтерфейс реалізує користувач у Spring Security?",
+            "options": [
+              { "option_id": "a", "text": "UserDetails" },
+              { "option_id": "b", "text": "Principal" },
+              { "option_id": "c", "text": "Authentication" },
+              { "option_id": "d", "text": "GrantedAuthority" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q7",
+            "question_text": "Що таке GrantedAuthority у Spring Security?",
+            "options": [
+              { "option_id": "a", "text": "Роль або привілей користувача" },
+              { "option_id": "b", "text": "Профіль користувача" },
+              { "option_id": "c", "text": "Ідентифікатор сесії" },
+              { "option_id": "d", "text": "Пароль у hash-форматі" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q8",
+            "question_text": "Який з наведених класів відповідає за об'єкт автентифікації?",
+            "options": [
+              { "option_id": "a", "text": "Authentication" },
+              { "option_id": "b", "text": "AuthorizationRequest" },
+              { "option_id": "c", "text": "AuthContext" },
+              { "option_id": "d", "text": "AccessDecisionManager" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q9",
+            "question_text": "Як дозволити лише ADMIN-користувачам доступ до певного ендпоінту?",
+            "options": [
+              { "option_id": "a", "text": ".hasRole(\"ADMIN\")" },
+              { "option_id": "b", "text": ".requireAuthority(\"admin\")" },
+              { "option_id": "c", "text": ".accessRole(\"ADMIN\")" },
+              { "option_id": "d", "text": ".only(\"ADMIN\")" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q10",
+            "question_text": "Що таке AuthenticationProvider?",
+            "options": [
+              { "option_id": "a", "text": "Компонент, який перевіряє облікові дані" },
+              { "option_id": "b", "text": "Сервіс збереження сесій" },
+              { "option_id": "c", "text": "Обгортка для токенів" },
+              { "option_id": "d", "text": "Веб-фільтр" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q11",
+            "question_text": "Який компонент забезпечує шифрування паролів у Spring Security?",
+            "options": [
+              { "option_id": "a", "text": "PasswordEncoder" },
+              { "option_id": "b", "text": "Encryptor" },
+              { "option_id": "c", "text": "CryptoService" },
+              { "option_id": "d", "text": "PasswordHasher" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q12",
+            "question_text": "Який найпоширеніший клас реалізує PasswordEncoder?",
+            "options": [
+              { "option_id": "a", "text": "BCryptPasswordEncoder" },
+              { "option_id": "b", "text": "SHA1PasswordEncoder" },
+              { "option_id": "c", "text": "MD5Hasher" },
+              { "option_id": "d", "text": "AESPasswordEncoder" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q13",
+            "question_text": "Що таке UserDetailsService?",
+            "options": [
+              { "option_id": "a", "text": "Інтерфейс для завантаження користувачів з БД" },
+              { "option_id": "b", "text": "Інтерфейс контролю прав доступу" },
+              { "option_id": "c", "text": "Фільтр для логін-форми" },
+              { "option_id": "d", "text": "Об'єкт DTO для UI" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q14",
+            "question_text": "Як отримати поточного користувача у контролері?",
+            "options": [
+              { "option_id": "a", "text": "@AuthenticationPrincipal UserDetails user" },
+              { "option_id": "b", "text": "@CurrentUser user" },
+              { "option_id": "c", "text": "@Principal user" },
+              { "option_id": "d", "text": "@ActiveUser user" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q15",
+            "question_text": "Як додати CORS підтримку у Spring Security?",
+            "options": [
+              { "option_id": "a", "text": ".cors()" },
+              { "option_id": "b", "text": ".enableCors()" },
+              { "option_id": "c", "text": ".allowOrigins()" },
+              { "option_id": "d", "text": ".withCors()" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q16",
+            "question_text": "Що таке SecurityFilterChain у Spring Security 6?",
+            "options": [
+              { "option_id": "a", "text": "Конфігурація фільтрів безпеки" },
+              { "option_id": "b", "text": "Інтерфейс збереження ролей" },
+              { "option_id": "c", "text": "Аналог UserDetails" },
+              { "option_id": "d", "text": "Сервіс авторизації" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q17",
+            "question_text": "Як захистити всі ендпоінти, окрім /public/**?",
+            "options": [
+              { "option_id": "a", "text": ".requestMatchers(\"/public/**\").permitAll().anyRequest().authenticated()" },
+              { "option_id": "b", "text": ".matchAll().exclude(\"/public/**\")" },
+              { "option_id": "c", "text": ".disable(\"/public/**\")" },
+              { "option_id": "d", "text": ".ignore(\"/public/**\")" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q18",
+            "question_text": "Що таке formLogin() у Spring Security?",
+            "options": [
+              { "option_id": "a", "text": "Конфігурація логін-форми HTML" },
+              { "option_id": "b", "text": "Авторизація через форму Angular" },
+              { "option_id": "c", "text": "Автоматичний редирект на API" },
+              { "option_id": "d", "text": "Шифрування паролів у браузері" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q19",
+            "question_text": "Який фільтр є першим у Spring Security?",
+            "options": [
+              { "option_id": "a", "text": "SecurityContextPersistenceFilter" },
+              { "option_id": "b", "text": "UsernamePasswordAuthenticationFilter" },
+              { "option_id": "c", "text": "CsrfFilter" },
+              { "option_id": "d", "text": "ExceptionTranslationFilter" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q20",
+            "question_text": "Що таке .permitAll() у конфігурації?",
+            "options": [
+              { "option_id": "a", "text": "Дозвіл доступу без автентифікації" },
+              { "option_id": "b", "text": "Заборона для всіх ролей" },
+              { "option_id": "c", "text": "Примусова авторизація" },
+              { "option_id": "d", "text": "Перевірка HTTPS-запиту" }
+            ],
+            "correct_option_id": "a"
+          }
+        ]
+      }
+    ]
+  }
+}
