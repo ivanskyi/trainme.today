@@ -1,0 +1,235 @@
+{
+  "topic": {
+    "id": "creational_patterns_ukr",
+    "name": "Creational Патерни",
+    "description": "Тест з 20 запитань про патерни проектування, які стосуються створення об'єктів",
+    "tests": [
+      {
+        "test_id": "creational_test_20",
+        "test_title": "Тест з Creational патернів",
+        "questions": [
+          {
+            "question_id": "q1",
+            "question_text": "Яка мета патерну Singleton?",
+            "options": [
+              { "option_id": "a", "text": "Забезпечити один екземпляр класу" },
+              { "option_id": "b", "text": "Створювати об’єкти без визначення конкретного класу" },
+              { "option_id": "c", "text": "Групувати пов’язані об’єкти" },
+              { "option_id": "d", "text": "Відкладати створення об’єкта до першого використання" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q2",
+            "question_text": "Який патерн дозволяє створювати складні об’єкти поетапно?",
+            "options": [
+              { "option_id": "a", "text": "Factory Method" },
+              { "option_id": "b", "text": "Builder" },
+              { "option_id": "c", "text": "Prototype" },
+              { "option_id": "d", "text": "Singleton" }
+            ],
+            "correct_option_id": "b"
+          },
+          {
+            "question_id": "q3",
+            "question_text": "Що таке Factory Method?",
+            "options": [
+              { "option_id": "a", "text": "Патерн для створення одного об’єкта" },
+              { "option_id": "b", "text": "Інтерфейс для створення об’єкта, але дозволяє підкласам змінювати тип створеного об’єкта" },
+              { "option_id": "c", "text": "Патерн, що копіює існуючий об’єкт" },
+              { "option_id": "d", "text": "Патерн для створення складних об’єктів" }
+            ],
+            "correct_option_id": "b"
+          },
+          {
+            "question_id": "q4",
+            "question_text": "Який патерн дозволяє створювати новий об’єкт шляхом копіювання існуючого?",
+            "options": [
+              { "option_id": "a", "text": "Prototype" },
+              { "option_id": "b", "text": "Builder" },
+              { "option_id": "c", "text": "Singleton" },
+              { "option_id": "d", "text": "Factory Method" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q5",
+            "question_text": "Для чого застосовується патерн Abstract Factory?",
+            "options": [
+              { "option_id": "a", "text": "Для створення об’єктів без прив’язки до конкретних класів" },
+              { "option_id": "b", "text": "Для копіювання об’єктів" },
+              { "option_id": "c", "text": "Для поетапного створення об’єктів" },
+              { "option_id": "d", "text": "Для забезпечення єдиного екземпляру класу" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q6",
+            "question_text": "Який патерн забезпечує відкладене створення об’єкта до моменту, коли він дійсно потрібен?",
+            "options": [
+              { "option_id": "a", "text": "Singleton" },
+              { "option_id": "b", "text": "Lazy Initialization" },
+              { "option_id": "c", "text": "Builder" },
+              { "option_id": "d", "text": "Factory Method" }
+            ],
+            "correct_option_id": "b"
+          },
+          {
+            "question_id": "q7",
+            "question_text": "Що найкраще описує патерн Builder?",
+            "options": [
+              { "option_id": "a", "text": "Відокремлення створення складного об’єкта від його представлення" },
+              { "option_id": "b", "text": "Обмеження створення екземпляру класу одним об’єктом" },
+              { "option_id": "c", "text": "Створення сімейства пов’язаних об’єктів" },
+              { "option_id": "d", "text": "Копіювання існуючих об’єктів" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q8",
+            "question_text": "Яка з цих властивостей не характерна для патерну Singleton?",
+            "options": [
+              { "option_id": "a", "text": "Має тільки один екземпляр" },
+              { "option_id": "b", "text": "Дозволяє створювати об’єкти з підкласів" },
+              { "option_id": "c", "text": "Забезпечує глобальну точку доступу до екземпляру" },
+              { "option_id": "d", "text": "Може реалізовуватись через відкладену ініціалізацію" }
+            ],
+            "correct_option_id": "b"
+          },
+          {
+            "question_id": "q9",
+            "question_text": "Яке твердження найкраще описує патерн Prototype?",
+            "options": [
+              { "option_id": "a", "text": "Створює новий об’єкт через клонування існуючого" },
+              { "option_id": "b", "text": "Забезпечує єдиний екземпляр класу" },
+              { "option_id": "c", "text": "Поетапно створює об’єкт" },
+              { "option_id": "d", "text": "Створює об’єкти без вказівки конкретного класу" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q10",
+            "question_text": "Для чого служить патерн Factory Method?",
+            "options": [
+              { "option_id": "a", "text": "Для делегування створення об’єкта підкласам" },
+              { "option_id": "b", "text": "Для обмеження кількості створюваних об’єктів" },
+              { "option_id": "c", "text": "Для створення складних об’єктів" },
+              { "option_id": "d", "text": "Для клонування об’єктів" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q11",
+            "question_text": "Яка відмінність між Abstract Factory і Factory Method?",
+            "options": [
+              { "option_id": "a", "text": "Abstract Factory створює сімейство об’єктів, Factory Method — один об’єкт" },
+              { "option_id": "b", "text": "Factory Method створює сімейство об’єктів, Abstract Factory — один" },
+              { "option_id": "c", "text": "Обидва створюють тільки один об’єкт" },
+              { "option_id": "d", "text": "Обидва копіюють існуючі об’єкти" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q12",
+            "question_text": "Який патерн використовується для того, щоб уникнути створення об’єкта без необхідності?",
+            "options": [
+              { "option_id": "a", "text": "Prototype" },
+              { "option_id": "b", "text": "Lazy Initialization" },
+              { "option_id": "c", "text": "Singleton" },
+              { "option_id": "d", "text": "Builder" }
+            ],
+            "correct_option_id": "b"
+          },
+          {
+            "question_id": "q13",
+            "question_text": "Який патерн дозволяє будувати об’єкт крок за кроком, з можливістю різної конфігурації?",
+            "options": [
+              { "option_id": "a", "text": "Factory Method" },
+              { "option_id": "b", "text": "Builder" },
+              { "option_id": "c", "text": "Prototype" },
+              { "option_id": "d", "text": "Singleton" }
+            ],
+            "correct_option_id": "b"
+          },
+          {
+            "question_id": "q14",
+            "question_text": "Як патерн Singleton забезпечує єдиний екземпляр об’єкта?",
+            "options": [
+              { "option_id": "a", "text": "Використовуючи приватний конструктор і статичний метод доступу" },
+              { "option_id": "b", "text": "Через клонування об’єкта" },
+              { "option_id": "c", "text": "Створюючи об’єкт через фабричний метод" },
+              { "option_id": "d", "text": "Використовуючи відкладене створення" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q15",
+            "question_text": "Який патерн проектування використовує інтерфейс для створення об’єктів без визначення їх конкретних класів?",
+            "options": [
+              { "option_id": "a", "text": "Abstract Factory" },
+              { "option_id": "b", "text": "Singleton" },
+              { "option_id": "c", "text": "Builder" },
+              { "option_id": "d", "text": "Prototype" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q16",
+            "question_text": "Що робить патерн Prototype, якщо потрібно створити новий об’єкт?",
+            "options": [
+              { "option_id": "a", "text": "Копіює існуючий об’єкт" },
+              { "option_id": "b", "text": "Викликає конструктор класу" },
+              { "option_id": "c", "text": "Створює об’єкт через фабричний метод" },
+              { "option_id": "d", "text": "Забезпечує єдиний екземпляр" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q17",
+            "question_text": "Яка перевага використання патерну Builder?",
+            "options": [
+              { "option_id": "a", "text": "Полегшує створення складних об’єктів з багатьма параметрами" },
+              { "option_id": "b", "text": "Обмежує кількість об’єктів" },
+              { "option_id": "c", "text": "Забезпечує глобальний доступ до екземпляру" },
+              { "option_id": "d", "text": "Дозволяє клонувати об’єкти" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q18",
+            "question_text": "Що з переліченого не є creational патерном?",
+            "options": [
+              { "option_id": "a", "text": "Observer" },
+              { "option_id": "b", "text": "Factory Method" },
+              { "option_id": "c", "text": "Prototype" },
+              { "option_id": "d", "text": "Singleton" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q19",
+            "question_text": "Як патерн Abstract Factory допомагає при розробці програмного забезпечення?",
+            "options": [
+              { "option_id": "a", "text": "Створює сімейства пов’язаних об’єктів без залежності від їх конкретних класів" },
+              { "option_id": "b", "text": "Обмежує створення об’єктів одним екземпляром" },
+              { "option_id": "c", "text": "Створює копії об’єктів" },
+              { "option_id": "d", "text": "Допомагає будувати складні об’єкти поетапно" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q20",
+            "question_text": "Що спільного у патернів Factory Method і Abstract Factory?",
+            "options": [
+              { "option_id": "a", "text": "Обидва відповідають за створення об’єктів, приховуючи деталі реалізації" },
+              { "option_id": "b", "text": "Обидва забезпечують єдиний екземпляр" },
+              { "option_id": "c", "text": "Обидва працюють через клонування" },
+              { "option_id": "d", "text": "Обидва будують об’єкти поетапно" }
+            ],
+            "correct_option_id": "a"
+          }
+        ]
+      }
+    ]
+  }
+}

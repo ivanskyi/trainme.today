@@ -1,0 +1,235 @@
+{
+  "topic": {
+    "id": "git_mid_senior_ukr",
+    "name": "Git для Middle/Senior розробника",
+    "description": "Поглиблений тест з Git для досвідчених програмістів",
+    "tests": [
+      {
+        "test_id": "git_advanced_test",
+        "test_title": "Git: Поглиблений рівень",
+        "questions": [
+          {
+            "question_id": "q1",
+            "question_text": "Що робить команда `git cherry-pick`?",
+            "options": [
+              { "option_id": "a", "text": "Копіює один або кілька комітів в іншу гілку" },
+              { "option_id": "b", "text": "Видаляє коміт з історії" },
+              { "option_id": "c", "text": "Створює нову гілку з останнього коміту" },
+              { "option_id": "d", "text": "Об’єднує історії двох гілок" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q2",
+            "question_text": "Який прапорець `git merge` дозволяє уникнути створення merge-коміту, якщо можливо?",
+            "options": [
+              { "option_id": "a", "text": "--ff-only" },
+              { "option_id": "b", "text": "--squash" },
+              { "option_id": "c", "text": "--no-commit" },
+              { "option_id": "d", "text": "--abort" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q3",
+            "question_text": "Що означає команда `git rebase -i HEAD~3`?",
+            "options": [
+              { "option_id": "a", "text": "Інтерактивно редагувати останні 3 коміти" },
+              { "option_id": "b", "text": "Перенести 3 коміти в іншу гілку" },
+              { "option_id": "c", "text": "Зберегти поточну гілку у stash" },
+              { "option_id": "d", "text": "Інтерактивно злити з головною гілкою" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q4",
+            "question_text": "Якою командою можна видалити remote-гілку?",
+            "options": [
+              { "option_id": "a", "text": "git push origin --delete <branch>" },
+              { "option_id": "b", "text": "git branch -D origin/<branch>" },
+              { "option_id": "c", "text": "git remote remove <branch>" },
+              { "option_id": "d", "text": "git reset --hard origin/<branch>" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q5",
+            "question_text": "Що таке detached HEAD у Git?",
+            "options": [
+              { "option_id": "a", "text": "Стан, коли HEAD вказує на коміт, а не на гілку" },
+              { "option_id": "b", "text": "Помилка синхронізації з remote" },
+              { "option_id": "c", "text": "Назва тимчасової гілки" },
+              { "option_id": "d", "text": "Результат конфлікту при мерджі" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q6",
+            "question_text": "Команда `git reflog` використовується для:",
+            "options": [
+              { "option_id": "a", "text": "Перегляду історії змін HEAD" },
+              { "option_id": "b", "text": "Виводу списку гілок" },
+              { "option_id": "c", "text": "Очищення локального кешу" },
+              { "option_id": "d", "text": "Зміни remote URL" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q7",
+            "question_text": "Який ефект має `git reset --mixed HEAD~1`?",
+            "options": [
+              { "option_id": "a", "text": "Видаляє останній коміт, залишаючи зміни в індексі" },
+              { "option_id": "b", "text": "Переміщує HEAD на попередній коміт, залишаючи зміни в робочій директорії" },
+              { "option_id": "c", "text": "Видаляє останній коміт і всі зміни" },
+              { "option_id": "d", "text": "Очищає всі зміни, що не закомічені" }
+            ],
+            "correct_option_id": "b"
+          },
+          {
+            "question_id": "q8",
+            "question_text": "Як безпечно видалити локальну гілку `feature`?",
+            "options": [
+              { "option_id": "a", "text": "git branch -d feature" },
+              { "option_id": "b", "text": "git delete feature" },
+              { "option_id": "c", "text": "git remove feature" },
+              { "option_id": "d", "text": "git branch --remove feature" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q9",
+            "question_text": "Чим відрізняється `merge` від `rebase`?",
+            "options": [
+              { "option_id": "a", "text": "Merge зберігає історію, rebase її переписує" },
+              { "option_id": "b", "text": "Rebase швидший" },
+              { "option_id": "c", "text": "Merge не створює комітів" },
+              { "option_id": "d", "text": "Rebase працює тільки з віддаленими гілками" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q10",
+            "question_text": "Що робить `git stash pop`?",
+            "options": [
+              { "option_id": "a", "text": "Застосовує останній stash і видаляє його" },
+              { "option_id": "b", "text": "Застосовує stash без видалення" },
+              { "option_id": "c", "text": "Переміщує зміни у нову гілку" },
+              { "option_id": "d", "text": "Зберігає робочий каталог" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q11",
+            "question_text": "Як застосувати лише частину змін з файлу до індексу?",
+            "options": [
+              { "option_id": "a", "text": "git add -p" },
+              { "option_id": "b", "text": "git stage --partial" },
+              { "option_id": "c", "text": "git commit -i" },
+              { "option_id": "d", "text": "git diff --index" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q12",
+            "question_text": "Що таке fast-forward merge?",
+            "options": [
+              { "option_id": "a", "text": "Об’єднання без створення нового коміту" },
+              { "option_id": "b", "text": "Оновлення HEAD до попереднього стану" },
+              { "option_id": "c", "text": "Мердж з конфліктами" },
+              { "option_id": "d", "text": "Злиття з іншого репозиторію" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q13",
+            "question_text": "Що означає `git clean -fd`?",
+            "options": [
+              { "option_id": "a", "text": "Видалити всі незаіндексовані файли та директорії" },
+              { "option_id": "b", "text": "Видалити всі коміти" },
+              { "option_id": "c", "text": "Скинути HEAD до початку" },
+              { "option_id": "d", "text": "Очистити історію репозиторію" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q14",
+            "question_text": "Як можна скасувати `git commit`, зберігши зміни у staging area?",
+            "options": [
+              { "option_id": "a", "text": "git reset --soft HEAD~1" },
+              { "option_id": "b", "text": "git revert HEAD" },
+              { "option_id": "c", "text": "git checkout HEAD" },
+              { "option_id": "d", "text": "git clean -n" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q15",
+            "question_text": "Чим `git pull --rebase` відрізняється від звичайного `git pull`?",
+            "options": [
+              { "option_id": "a", "text": "Переписує локальні коміти поверх нових з origin" },
+              { "option_id": "b", "text": "Створює нову гілку" },
+              { "option_id": "c", "text": "Видаляє історію гілки" },
+              { "option_id": "d", "text": "Відновлює останній stash" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q16",
+            "question_text": "Як переглянути, який коміт ввів певний рядок у файл?",
+            "options": [
+              { "option_id": "a", "text": "git blame <file>" },
+              { "option_id": "b", "text": "git diff HEAD <file>" },
+              { "option_id": "c", "text": "git log -n1" },
+              { "option_id": "d", "text": "git show <file>" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q17",
+            "question_text": "Як створити тег `v1.0` на поточному коміті?",
+            "options": [
+              { "option_id": "a", "text": "git tag v1.0" },
+              { "option_id": "b", "text": "git label v1.0" },
+              { "option_id": "c", "text": "git version v1.0" },
+              { "option_id": "d", "text": "git checkpoint v1.0" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q18",
+            "question_text": "Що таке `reflog` у Git?",
+            "options": [
+              { "option_id": "a", "text": "Історія пересувань HEAD" },
+              { "option_id": "b", "text": "Журнал комітів у гілці" },
+              { "option_id": "c", "text": "Опис конфліктів" },
+              { "option_id": "d", "text": "Список тегів" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q19",
+            "question_text": "Що робить `git bisect`?",
+            "options": [
+              { "option_id": "a", "text": "Допомагає знайти коміт, що спричинив помилку" },
+              { "option_id": "b", "text": "Розділяє великий файл" },
+              { "option_id": "c", "text": "Порівнює два файли" },
+              { "option_id": "d", "text": "Аналізує продуктивність комітів" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q20",
+            "question_text": "Що буде, якщо виконати `git revert HEAD`?",
+            "options": [
+              { "option_id": "a", "text": "Створиться новий коміт, який скасовує останній" },
+              { "option_id": "b", "text": "HEAD буде переміщено на попередній коміт" },
+              { "option_id": "c", "text": "Всі локальні зміни буде втрачено" },
+              { "option_id": "d", "text": "Очищено staging area" }
+            ],
+            "correct_option_id": "a"
+          }
+        ]
+      }
+    ]
+  }
+}

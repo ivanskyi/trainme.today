@@ -1,0 +1,235 @@
+{
+  "topic": {
+    "id": "behavioral_patterns_ukr",
+    "name": "Поведінкові Патерни",
+    "description": "Тест з 20 запитань про поведінкові патерни проектування",
+    "tests": [
+      {
+        "test_id": "behavioral_test_20",
+        "test_title": "Тест з Поведінкових патернів",
+        "questions": [
+          {
+            "question_id": "q1",
+            "question_text": "Яка головна мета патерну Observer?",
+            "options": [
+              { "option_id": "a", "text": "Оповіщати залежні об'єкти про зміну стану" },
+              { "option_id": "b", "text": "Інкапсулювати запит як об'єкт" },
+              { "option_id": "c", "text": "Упорядковувати обчислення" },
+              { "option_id": "d", "text": "Ізолювати алгоритми від клієнта" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q2",
+            "question_text": "Який патерн дозволяє створити ланцюжок обробників для запиту?",
+            "options": [
+              { "option_id": "a", "text": "Chain of Responsibility" },
+              { "option_id": "b", "text": "Strategy" },
+              { "option_id": "c", "text": "Command" },
+              { "option_id": "d", "text": "State" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q3",
+            "question_text": "Що робить патерн Command?",
+            "options": [
+              { "option_id": "a", "text": "Інкапсулює запит як об’єкт" },
+              { "option_id": "b", "text": "Керує переходами між станами" },
+              { "option_id": "c", "text": "Зберігає історію об'єктів" },
+              { "option_id": "d", "text": "Оповіщає спостерігачів" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q4",
+            "question_text": "Патерн Strategy використовується для:",
+            "options": [
+              { "option_id": "a", "text": "Ізоляції різних алгоритмів і забезпечення їх взаємозамінності" },
+              { "option_id": "b", "text": "Збереження попереднього стану об’єкта" },
+              { "option_id": "c", "text": "Організації ієрархії об'єктів" },
+              { "option_id": "d", "text": "Захисту доступу до даних" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q5",
+            "question_text": "Який патерн дозволяє змінювати поведінку об’єкта залежно від його стану?",
+            "options": [
+              { "option_id": "a", "text": "State" },
+              { "option_id": "b", "text": "Visitor" },
+              { "option_id": "c", "text": "Interpreter" },
+              { "option_id": "d", "text": "Mediator" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q6",
+            "question_text": "Патерн Iterator призначений для:",
+            "options": [
+              { "option_id": "a", "text": "Послідовного доступу до елементів колекції без розкриття її структури" },
+              { "option_id": "b", "text": "Інкапсуляції алгоритму" },
+              { "option_id": "c", "text": "Визначення інтерфейсу для всіх об'єктів" },
+              { "option_id": "d", "text": "Оптимізації використання пам’яті" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q7",
+            "question_text": "Що робить патерн Mediator?",
+            "options": [
+              { "option_id": "a", "text": "Зменшує кількість залежностей між об'єктами" },
+              { "option_id": "b", "text": "Зберігає історію операцій" },
+              { "option_id": "c", "text": "Перетворює запит у команду" },
+              { "option_id": "d", "text": "Визначає зовнішній API" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q8",
+            "question_text": "Патерн Visitor дозволяє:",
+            "options": [
+              { "option_id": "a", "text": "Додати нову операцію до об'єктної структури без зміни класів" },
+              { "option_id": "b", "text": "Керувати історією змін" },
+              { "option_id": "c", "text": "Організувати виконання алгоритмів" },
+              { "option_id": "d", "text": "Клонувати об'єкти" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q9",
+            "question_text": "Template Method визначає:",
+            "options": [
+              { "option_id": "a", "text": "Скелет алгоритму і дозволяє підкласам змінювати частини реалізації" },
+              { "option_id": "b", "text": "Інтерфейс доступу до агрегату" },
+              { "option_id": "c", "text": "Комунікацію між об’єктами" },
+              { "option_id": "d", "text": "Керування станом об’єкта" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q10",
+            "question_text": "Який патерн визначає граматику ітераційного розбору тексту?",
+            "options": [
+              { "option_id": "a", "text": "Interpreter" },
+              { "option_id": "b", "text": "Command" },
+              { "option_id": "c", "text": "Visitor" },
+              { "option_id": "d", "text": "Strategy" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q11",
+            "question_text": "Яка користь від використання Chain of Responsibility?",
+            "options": [
+              { "option_id": "a", "text": "Зменшує зв’язність між відправником і отримувачем запиту" },
+              { "option_id": "b", "text": "Забезпечує єдиний екземпляр" },
+              { "option_id": "c", "text": "Ізолює стан об’єкта" },
+              { "option_id": "d", "text": "Дозволяє змінювати інтерфейс клієнта" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q12",
+            "question_text": "Як патерн Memento працює з історією об’єкта?",
+            "options": [
+              { "option_id": "a", "text": "Зберігає і відновлює попередній стан об’єкта без порушення інкапсуляції" },
+              { "option_id": "b", "text": "Додає нову поведінку в рантаймі" },
+              { "option_id": "c", "text": "Передає запити між об’єктами" },
+              { "option_id": "d", "text": "Об’єднує об’єкти в дерево" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q13",
+            "question_text": "Strategy і State подібні тим, що:",
+            "options": [
+              { "option_id": "a", "text": "Обидва інкапсулюють поведінку в окремих класах" },
+              { "option_id": "b", "text": "Використовуються тільки для UI" },
+              { "option_id": "c", "text": "Реалізують одну і ту ж структуру" },
+              { "option_id": "d", "text": "Надають спільну реалізацію інтерфейсу" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q14",
+            "question_text": "Який патерн часто використовують для реалізації undo/redo?",
+            "options": [
+              { "option_id": "a", "text": "Command" },
+              { "option_id": "b", "text": "Visitor" },
+              { "option_id": "c", "text": "Interpreter" },
+              { "option_id": "d", "text": "Template Method" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q15",
+            "question_text": "Mediator спрощує взаємодію об’єктів через:",
+            "options": [
+              { "option_id": "a", "text": "Посередника, який централізує спілкування" },
+              { "option_id": "b", "text": "Глобальні змінні" },
+              { "option_id": "c", "text": "Статичні методи" },
+              { "option_id": "d", "text": "Спадкування логіки" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q16",
+            "question_text": "Патерн Iterator приховує:",
+            "options": [
+              { "option_id": "a", "text": "Внутрішню реалізацію колекції" },
+              { "option_id": "b", "text": "Реалізацію шаблону" },
+              { "option_id": "c", "text": "Стан об’єкта" },
+              { "option_id": "d", "text": "Джерело запиту" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q17",
+            "question_text": "Патерн Visitor вимагає, щоб елементи структури:",
+            "options": [
+              { "option_id": "a", "text": "Приймали відвідувача (accept(visitor))" },
+              { "option_id": "b", "text": "Мали спільний батьківський клас" },
+              { "option_id": "c", "text": "Були динамічно створені" },
+              { "option_id": "d", "text": "Клонувалися" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q18",
+            "question_text": "Template Method контролює алгоритм через:",
+            "options": [
+              { "option_id": "a", "text": "Фіксацію структури алгоритму у базовому класі" },
+              { "option_id": "b", "text": "Делегування логіки інтерфейсу" },
+              { "option_id": "c", "text": "Реалізацію через фабрики" },
+              { "option_id": "d", "text": "Передачу параметрів" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q19",
+            "question_text": "Що з наступного найкраще підходить для реалізації складного текстового парсера?",
+            "options": [
+              { "option_id": "a", "text": "Interpreter" },
+              { "option_id": "b", "text": "Visitor" },
+              { "option_id": "c", "text": "Command" },
+              { "option_id": "d", "text": "Strategy" }
+            ],
+            "correct_option_id": "a"
+          },
+          {
+            "question_id": "q20",
+            "question_text": "Memento дозволяє зберігати стан об’єкта:",
+            "options": [
+              { "option_id": "a", "text": "Без порушення інкапсуляції" },
+              { "option_id": "b", "text": "Через публічні поля" },
+              { "option_id": "c", "text": "Клонуванням" },
+              { "option_id": "d", "text": "Ітеративно" }
+            ],
+            "correct_option_id": "a"
+          }
+        ]
+      }
+    ]
+  }
+}
