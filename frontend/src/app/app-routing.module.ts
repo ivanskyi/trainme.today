@@ -4,15 +4,17 @@ import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { PublicDashboardComponent } from './component/public-dashboard/public-dashboard.component';
+import { TopicComponent } from './component/topic/topic.component';
+import { TestResultComponent } from './component/test-result/test-result.component';
 import { GuestGuardService } from './service/guest-guard.service';
-import {AuthGuardService} from "./service/auth-guard.service";
-import {TopicComponent} from "./component/topic/topic.component";
+import { AuthGuardService } from './service/auth-guard.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [GuestGuardService] },
   { path: 'register', component: RegisterComponent, canActivate: [GuestGuardService] },
   { path: 'public', component: PublicDashboardComponent, canActivate: [GuestGuardService] },
   { path: 'topic', component: TopicComponent, canActivate: [GuestGuardService] },
+  { path: 'test-result', component: TestResultComponent, canActivate: [GuestGuardService] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService] },
   { path: '', redirectTo: '/public', pathMatch: 'full' },
   { path: '**', redirectTo: '/public' }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 interface Option {
   option_id: string;
@@ -27,6 +27,14 @@ interface Topic {
   tests: Test[];
 }
 
+interface TestProgress {
+  currentQuestionIndex: number;
+  answers: { [questionId: string]: string };
+  correctAnswers: { [questionId: string]: boolean };
+  completed: boolean;
+  score: number;
+}
+
 @Component({
   selector: 'app-topic',
   templateUrl: './topic.component.html',
@@ -40,10 +48,13 @@ export class TopicComponent implements OnInit {
   result: number | null = null;
   showResults = false;
   wrongQuestions: Question[] = [];
-
   private topicId: string | null = null;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) {}
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.route.queryParamMap.subscribe(params => {
@@ -87,6 +98,8 @@ export class TopicComponent implements OnInit {
   }
 
   saveAnswers() {
+    if (!this.topicId) return;
+
     const state = {
       answers: this.answers,
       currentQuestionIndex: this.currentQuestionIndex,
@@ -94,12 +107,13 @@ export class TopicComponent implements OnInit {
       showResults: this.showResults
     };
 
-    localStorage.setItem('quizState', JSON.stringify(state));
+    localStorage.setItem(`quizState_${this.topicId}`, JSON.stringify(state));
   }
 
   loadAnswers() {
-    const savedState = localStorage.getItem('quizState');
+    if (!this.topicId) return;
 
+    const savedState = localStorage.getItem(`quizState_${this.topicId}`);
     if (savedState) {
       try {
         const state = JSON.parse(savedState);
@@ -124,23 +138,37 @@ export class TopicComponent implements OnInit {
     const test = this.topic.tests[this.currentTestIndex];
     let correctCount = 0;
     this.wrongQuestions = [];
+    const correctAnswers: { [questionId: string]: boolean } = {};
 
     for (const question of test.questions) {
       const userAnswer = this.answers[question.question_id];
+      const isCorrect = userAnswer === question.correct_option_id;
 
-      if (userAnswer === question.correct_option_id) {
+      if (isCorrect) {
         correctCount++;
       } else if (userAnswer) {
         this.wrongQuestions.push(question);
       }
+
+      correctAnswers[question.question_id] = isCorrect;
     }
 
     this.result = correctCount;
+
+    if (this.topicId) {
+      const testProgress: TestProgress = {
+        currentQuestionIndex: this.currentQuestionIndex,
+        answers: this.answers,
+        correctAnswers: correctAnswers,
+        completed: true,
+        score: correctCount
+      };
+      localStorage.setItem(`test_progress_${this.topicId}`, JSON.stringify(testProgress));
+    }
   }
 
   nextQuestion() {
     if (!this.topic) return;
-
     const questions = this.topic.tests[this.currentTestIndex].questions;
     if (this.currentQuestionIndex < questions.length - 1) {
       this.currentQuestionIndex++;
@@ -157,7 +185,6 @@ export class TopicComponent implements OnInit {
 
   nextTest() {
     if (!this.topic) return;
-
     if (this.currentTestIndex < this.topic.tests.length - 1) {
       this.currentTestIndex++;
       this.resetTestState();
@@ -166,7 +193,6 @@ export class TopicComponent implements OnInit {
 
   prevTest() {
     if (!this.topic) return;
-
     if (this.currentTestIndex > 0) {
       this.currentTestIndex--;
       this.resetTestState();
@@ -183,7 +209,10 @@ export class TopicComponent implements OnInit {
   }
 
   clearTestProgress() {
-    localStorage.removeItem('quizState');
+    if (this.topicId) {
+      localStorage.removeItem(`quizState_${this.topicId}`);
+      localStorage.removeItem(`test_progress_${this.topicId}`);
+    }
     this.currentTestIndex = 0;
     this.resetTestState();
   }
@@ -198,30 +227,32 @@ export class TopicComponent implements OnInit {
     this.resetTestState();
   }
 
+  viewDetailedResults() {
+    if (this.topicId) {
+      this.router.navigate(['/test-result'], { queryParams: { id: this.topicId } });
+    }
+  }
+
   getProgressPercentage(): number {
     if (!this.topic) return 0;
-
     const totalQuestions = this.topic.tests[this.currentTestIndex].questions.length;
     return ((this.currentQuestionIndex + 1) / totalQuestions) * 100;
   }
 
   getScorePercentage(): number {
     if (!this.topic || this.result === null) return 0;
-
     const totalQuestions = this.topic.tests[this.currentTestIndex].questions.length;
     return (this.result / totalQuestions) * 100;
   }
 
   isCurrentQuestionAnswered(): boolean {
     if (!this.topic) return false;
-
     const currentQuestion = this.topic.tests[this.currentTestIndex].questions[this.currentQuestionIndex];
     return !!this.answers[currentQuestion.question_id];
   }
 
   getAnsweredCount(): number {
     if (!this.topic) return 0;
-
     const questions = this.topic.tests[this.currentTestIndex].questions;
     return questions.filter(q => this.answers[q.question_id]).length;
   }

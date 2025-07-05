@@ -1,0 +1,64 @@
+<div class="results-wrapper">
+  <div class="results-main">
+    <div class="results-header">
+      <h1>Test Results</h1>
+      <h2>{{ topicName }}</h2>
+      <div class="score-summary">
+        <div class="score-circle" [style.border-color]="getScoreColor()">
+          <span class="score-number" [style.color]="getScoreColor()">{{ percentage }}%</span>
+        </div>
+        <div class="score-details">
+          <p>{{ score }} out of {{ totalQuestions }} correct</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="results-list">
+      <div
+        class="result-item"
+        *ngFor="let result of results; let i = index"
+        [class.correct]="result.isCorrect"
+        [class.incorrect]="!result.isCorrect"
+      >
+        <div class="result-header">
+          <span class="question-number">{{ i + 1 }}</span>
+          <div class="result-status">
+            <span class="status-icon" [class.correct]="result.isCorrect">
+              {{ result.isCorrect ? '✓' : '✗' }}
+            </span>
+          </div>
+        </div>
+
+        <div class="result-content">
+          <h3>{{ result.question }}</h3>
+
+          <div class="answer-comparison">
+            <div class="answer-row" *ngIf="!result.isCorrect">
+              <span class="answer-label incorrect">Your answer:</span>
+              <span class="answer-text">{{ result.userAnswer }}</span>
+            </div>
+
+            <div class="answer-row">
+              <span class="answer-label correct">Correct answer:</span>
+              <span class="answer-text">{{ result.correctAnswer }}</span>
+            </div>
+          </div>
+
+          <div class="explanation" *ngIf="result.explanation">
+            <h4>Explanation:</h4>
+            <p>{{ result.explanation }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="results-actions">
+      <button class="btn btn-primary" (click)="retakeTest()">
+        Retake Test
+      </button>
+      <button class="btn btn-secondary" (click)="backToTopics()">
+        Back to Topics
+      </button>
+    </div>
+  </div>
+</div>

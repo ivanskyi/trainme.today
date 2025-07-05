@@ -12,6 +12,7 @@ import {AuthInterceptorService} from "./interceptor/auth.interceptor.service";
 import { RegisterComponent } from './component/register/register.component';
 import { PublicDashboardComponent } from './component/public-dashboard/public-dashboard.component';
 import {TopicComponent} from "./component/topic/topic.component";
+import { TestResultComponent } from './component/test-result/test-result.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {TopicComponent} from "./component/topic/topic.component";
     LoginComponent,
     RegisterComponent,
     PublicDashboardComponent,
-    TopicComponent
+    TopicComponent,
+    TestResultComponent
   ],
     imports: [
       BrowserModule,

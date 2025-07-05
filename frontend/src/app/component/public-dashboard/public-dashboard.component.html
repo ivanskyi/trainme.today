@@ -3,7 +3,6 @@
     <div class="topics-header">
       <h1>Topics List</h1>
     </div>
-
     <ul class="topics-list">
       <li
         class="topic-item"
@@ -16,8 +15,26 @@
         <div class="topic-content">
           <h3>{{ topic.name }}</h3>
           <p>{{ topic.description }}</p>
+          <div class="topic-progress" *ngIf="hasTopicProgress(topic.id)">
+            <div class="progress-bar">
+              <div
+                class="progress-fill"
+                [style.width.%]="getTopicProgressPercentage(topic.id)">
+              </div>
+            </div>
+            <span class="progress-text">{{ getTopicProgressPercentage(topic.id) }}%</span>
+          </div>
         </div>
-        <div class="topic-arrow">›</div>
+        <div class="topic-actions">
+          <button
+            class="clear-btn"
+            *ngIf="hasTopicProgress(topic.id)"
+            (click)="clearTestProgress(topic.id); $event.stopPropagation()"
+            title="Clear progress">
+            ×
+          </button>
+          <div class="topic-arrow">›</div>
+        </div>
       </li>
     </ul>
   </div>
