@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, HostListener } from '@angular/core';
 import { Hands } from '@mediapipe/hands';
 import { Camera } from '@mediapipe/camera_utils';
 
@@ -19,7 +19,7 @@ export class TopicComponent implements AfterViewInit {
     { word: 'House', correct: 'Будинок', options: ['Вікно', 'Будинок', 'Стіл'] }
   ];
 
-  private boxes: any[] = [];
+  private boxes: Array<{x:number,y:number,w:number,h:number,text:string,correct:boolean,highlighted:boolean}> = [];
   private current = 0;
   private latestHands: any = null;
   private speaking = false;
@@ -35,20 +35,33 @@ export class TopicComponent implements AfterViewInit {
     this.canvas = document.getElementById('canvas') as HTMLCanvasElement;
     this.questionEl = document.getElementById('question') as HTMLElement;
     this.ctx = this.canvas.getContext('2d')!;
-    this.canvas.width = window.innerWidth;
-    this.canvas.height = window.innerHeight;
+    this.resizeCanvas();
     this.initVoices();
     this.initHandTracking();
     this.render();
     this.nextQuestion();
   }
 
+  @HostListener('window:resize')
+  resizeCanvas() {
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight - this.getNavbarHeight();
+  }
+
+  private getNavbarHeight(): number {
+    // Try to get CSS variable or fallback to 60px
+    const rootStyles = getComputedStyle(document.documentElement);
+    const navbarHeight = rootStyles.getPropertyValue('--navbar-height');
+    const val = parseInt(navbarHeight);
+    return isNaN(val) ? 60 : val;
+  }
+
   private initVoices() {
     const synth = window.speechSynthesis;
     const setVoices = () => {
       const voices = synth.getVoices();
-      this.voiceMale = voices.find(v => v.lang.startsWith('en-GB') && v.name.toLowerCase().includes('male')) || voices[0];
-      this.voiceFemale = voices.find(v => v.lang.startsWith('en-GB') && v.name.toLowerCase().includes('female')) || voices[0];
+      this.voiceMale = voices.find(v => v.lang.startsWith('en') && /male/i.test(v.name)) || voices[0];
+      this.voiceFemale = voices.find(v => v.lang.startsWith('en') && /female/i.test(v.name)) || voices[0];
     };
     setVoices();
     speechSynthesis.onvoiceschanged = setVoices;
@@ -96,10 +109,15 @@ export class TopicComponent implements AfterViewInit {
     const w = 160, h = 100, gap = 20;
     const totalWidth = shuffled.length * w + (shuffled.length - 1) * gap;
     const startX = (this.canvas.width - totalWidth) / 2;
+    const y = (this.canvas.height / 2) - (h / 2);
     this.boxes = shuffled.map((opt, i) => ({
       x: startX + i * (w + gap),
-      y: this.canvas.height / 2 - h / 2,
-      w, h, text: opt, correct: opt === q.correct, highlighted: false
+      y,
+      w,
+      h,
+      text: opt,
+      correct: opt === q.correct,
+      highlighted: false
     }));
     this.startRepeating(q.word);
   }
@@ -151,11 +169,12 @@ export class TopicComponent implements AfterViewInit {
 
   private drawBoxes() {
     for (const b of this.boxes) {
-      this.ctx.fillStyle = b.correct && b.highlighted ? 'green' : (b.highlighted ? 'red' : '#444');
+      this.ctx.fillStyle = b.correct && b.highlighted ? '#28a745' : (b.highlighted ? '#dc3545' : '#444');
       this.ctx.fillRect(b.x, b.y, b.w, b.h);
       this.ctx.fillStyle = '#fff';
-      this.ctx.font = '18px sans-serif';
-      this.ctx.fillText(b.text, b.x + 10, b.y + 55);
+      this.ctx.font = '20px sans-serif';
+      this.ctx.textBaseline = 'middle';
+      this.ctx.fillText(b.text, b.x + 15, b.y + b.h / 2);
     }
   }
 
@@ -163,8 +182,10 @@ export class TopicComponent implements AfterViewInit {
     this.ctx.strokeStyle = 'lime';
     this.ctx.lineWidth = 2;
     const connections = [
-      [0, 1], [1, 2], [2, 3], [3, 4], [0, 5], [5, 6], [6, 7], [7, 8],
-      [0, 9], [9, 10], [10, 11], [11, 12], [0, 13], [13, 14], [14, 15], [15, 16],
+      [0, 1], [1, 2], [2, 3], [3, 4],
+      [0, 5], [5, 6], [6, 7], [7, 8],
+      [0, 9], [9, 10], [10, 11], [11, 12],
+      [0, 13], [13, 14], [14, 15], [15, 16],
       [0, 17], [17, 18], [18, 19], [19, 20]
     ];
     for (const [s, e] of connections) {
