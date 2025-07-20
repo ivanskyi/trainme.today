@@ -1,6 +1,15 @@
 import { Component, AfterViewInit, HostListener } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 import { Hands } from '@mediapipe/hands';
 import { Camera } from '@mediapipe/camera_utils';
+import {firstValueFrom} from "rxjs";
+
+interface WordQuestion {
+  word: string;
+  correct: string;
+  options: string[];
+}
 
 @Component({
   selector: 'app-topic',
@@ -13,25 +22,9 @@ export class TopicComponent implements AfterViewInit {
   private ctx!: CanvasRenderingContext2D;
   private questionEl!: HTMLElement;
 
-  data = [
-    { word: 'Achievement', correct: 'Досягнення', options: ['Провал', 'Досягнення', 'Спроба'] },
-    { word: 'Approach', correct: 'Підхід', options: ['Підхід', 'Відстань', 'Результат'] },
-    { word: 'Benefit', correct: 'Перевага', options: ['Проблема', 'Перевага', 'Втрати'] },
-    { word: 'Challenge', correct: 'Виклик', options: ['Відповідь', 'Виклик', 'Скарга'] },
-    { word: 'Concern', correct: 'Занепокоєння', options: ['Радість', 'Занепокоєння', 'Довіра'] },
-    { word: 'Decline', correct: 'Зниження', options: ['Підйом', 'Зниження', 'Виправлення'] },
-    { word: 'Evidence', correct: 'Доказ', options: ['Доказ', 'Уява', 'Думка'] },
-    { word: 'Growth', correct: 'Зростання', options: ['Падіння', 'Зростання', 'Втеча'] },
-    { word: 'Impact', correct: 'Вплив', options: ['Відповідальність', 'Зіткнення', 'Вплив'] },
-    { word: 'Issue', correct: 'Проблема', options: ['Успіх', 'Проблема', 'Випадок'] },
-    { word: 'Resource', correct: 'Ресурс', options: ['Ресурс', 'Втрата', 'Витрати'] },
-    { word: 'Solution', correct: 'Рішення', options: ['Завдання', 'Проблема', 'Рішення'] },
-    { word: 'Strategy', correct: 'Стратегія', options: ['Інтуїція', 'Стратегія', 'Помилка'] },
-    { word: 'Trend', correct: 'Тенденція', options: ['Тенденція', 'Суміш', 'Зміна'] },
-    { word: 'Value', correct: 'Цінність', options: ['Цінність', 'Ціна', 'Ризик'] }
-  ];
+  data: WordQuestion[] = [];
 
-  private boxes: Array<{x:number,y:number,w:number,h:number,text:string,correct:boolean,highlighted:boolean}> = [];
+  private boxes: Array<{ x: number; y: number; w: number; h: number; text: string; correct: boolean; highlighted: boolean }> = [];
   private current = 0;
   private latestHands: any = null;
   private speaking = false;
@@ -42,6 +35,8 @@ export class TopicComponent implements AfterViewInit {
   private voiceMale: SpeechSynthesisVoice | null = null;
   private voiceFemale: SpeechSynthesisVoice | null = null;
 
+  constructor(private http: HttpClient, private route: ActivatedRoute) {}
+
   ngAfterViewInit(): void {
     this.video = document.getElementById('video') as HTMLVideoElement;
     this.canvas = document.getElementById('canvas') as HTMLCanvasElement;
@@ -49,9 +44,15 @@ export class TopicComponent implements AfterViewInit {
     this.ctx = this.canvas.getContext('2d')!;
     this.resizeCanvas();
     this.initVoices();
-    this.initHandTracking();
-    this.render();
-    this.nextQuestion();
+
+    // Get topic id from query param (optional, default to b2-words)
+    const topicId = this.route.snapshot.queryParamMap.get('id') || 'b2-words';
+
+    this.loadTopicData(topicId).then(() => {
+      this.initHandTracking();
+      this.render();
+      this.nextQuestion();
+    });
   }
 
   @HostListener('window:resize')
@@ -65,6 +66,16 @@ export class TopicComponent implements AfterViewInit {
     const navbarHeight = rootStyles.getPropertyValue('--navbar-height');
     const val = parseInt(navbarHeight);
     return isNaN(val) ? 60 : val;
+  }
+
+  private async loadTopicData(topicId: string): Promise<void> {
+    const path = `assets/topics/${topicId}.json`; // adjusted path
+    try {
+      this.data = await firstValueFrom(this.http.get<WordQuestion[]>(path));
+    } catch (error) {
+      console.error('Failed to load topic data:', error);
+      this.data = [];
+    }
   }
 
   private initVoices() {
@@ -188,7 +199,7 @@ export class TopicComponent implements AfterViewInit {
 
   private drawBoxes() {
     for (const b of this.boxes) {
-      this.ctx.fillStyle = b.correct && b.highlighted ? '#28a745' : (b.highlighted ? '#dc3545' : '#222');
+      this.ctx.fillStyle = b.correct && b.highlighted ? '#28a745' : b.highlighted ? '#dc3545' : '#222';
       this.ctx.fillRect(b.x, b.y, b.w, b.h);
       this.ctx.fillStyle = '#fff';
       this.ctx.font = 'clamp(16px, 4vw, 22px) sans-serif';
@@ -239,7 +250,7 @@ export class TopicComponent implements AfterViewInit {
       minDetectionConfidence: 0.7,
       minTrackingConfidence: 0.7
     });
-    hands.onResults((results: any) => this.latestHands = results);
+    hands.onResults((results: any) => (this.latestHands = results));
     const camera = new Camera(this.video, {
       onFrame: async () => await hands.send({ image: this.video }),
       width: 640,

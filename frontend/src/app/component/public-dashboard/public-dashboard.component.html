@@ -1,41 +1,36 @@
-<div class="topics-wrapper">
-  <div class="topics-main">
-    <div class="topics-header">
-      <h1>Topics List</h1>
+<div class="dashboard-container">
+
+  <div class="filters">
+    <div class="filter-group">
+      <label for="rubric-select">Rubric</label>
+      <select id="rubric-select" [(ngModel)]="selectedRubric" (change)="selectRubric(selectedRubric!)">
+        <option value="" disabled selected>Select rubric</option>
+        <option *ngFor="let rubric of getUniqueRubrics()" [value]="rubric">{{ rubric }}</option>
+      </select>
     </div>
-    <ul class="topics-list">
-      <li
-        class="topic-item"
-        tabindex="0"
-        *ngFor="let topic of topics"
-        (click)="openTopic(topic.id)"
-        (keydown.enter)="openTopic(topic.id)"
-        (keydown.space)="openTopic(topic.id)"
-      >
-        <div class="topic-content">
-          <h3>{{ topic.name }}</h3>
-          <p>{{ topic.description }}</p>
-          <div class="topic-progress" *ngIf="hasTopicProgress(topic.id)">
-            <div class="progress-bar">
-              <div
-                class="progress-fill"
-                [style.width.%]="getTopicProgressPercentage(topic.id)">
-              </div>
-            </div>
-            <span class="progress-text">{{ getTopicProgressPercentage(topic.id) }}%</span>
-          </div>
-        </div>
-        <div class="topic-actions">
-          <button
-            class="clear-btn"
-            *ngIf="hasTopicProgress(topic.id)"
-            (click)="clearTestProgress(topic.id); $event.stopPropagation()"
-            title="Clear progress">
-            ×
-          </button>
-          <div class="topic-arrow">›</div>
-        </div>
-      </li>
-    </ul>
+
+    <div class="filter-group" *ngIf="selectedRubric">
+      <label for="subrubric-select">Subrubric</label>
+      <select id="subrubric-select" [(ngModel)]="selectedSubrubric" (change)="selectSubrubric(selectedSubrubric!)">
+        <option value="" disabled selected>Select subrubric</option>
+        <option *ngFor="let subrubric of getUniqueSubrubrics()" [value]="subrubric">{{ subrubric }}</option>
+      </select>
+    </div>
+
+    <div class="filter-group" *ngIf="selectedSubrubric">
+      <label for="subsubrubric-select">Sub-Subrubric</label>
+      <select id="subsubrubric-select" [(ngModel)]="selectedSubSubrubric" (change)="selectSubSubrubric(selectedSubSubrubric!)">
+        <option value="" disabled selected>Select sub-subrubric</option>
+        <option *ngFor="let subSubrubric of getUniqueSubSubrubrics()" [value]="subSubrubric">{{ subSubrubric }}</option>
+      </select>
+    </div>
   </div>
+
+  <div class="topics-list">
+    <div *ngFor="let topic of filteredTopics" class="topic-card" (click)="openTopic(topic.id)">
+      <h3>{{ topic.name }}</h3>
+      <p>{{ topic.description }}</p>
+    </div>
+  </div>
+
 </div>
