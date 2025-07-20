@@ -124,7 +124,7 @@ export class TopicComponent implements AfterViewInit, OnDestroy {
     utter.rate = 1;
     utter.pitch = this.nextIsFemale ? 1.2 : 0.8;
     utter.volume = 1;
-    utter.lang = 'en-US';
+    utter.lang = 'en-GB';
     this.nextIsFemale = !this.nextIsFemale;
     utter.onend = () => done?.();
     speechSynthesis.speak(utter);
@@ -260,7 +260,7 @@ export class TopicComponent implements AfterViewInit, OnDestroy {
     msg.rate = 1;
     msg.pitch = this.nextIsFemale ? 1.2 : 0.8;
     msg.volume = 1;
-    msg.lang = 'en-US';
+    msg.lang = 'en-GB';
     this.nextIsFemale = !this.nextIsFemale;
 
     speechSynthesis.speak(msg);
