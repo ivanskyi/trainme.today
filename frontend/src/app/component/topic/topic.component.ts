@@ -117,9 +117,13 @@ export class TopicComponent implements AfterViewInit {
     this.questionEl.textContent = q.word;
     this.speaking = false;
     const shuffled = [...q.options].sort(() => Math.random() - 0.5);
-    const w = Math.min(140, this.canvas.width / 4), h = 80, gap = 16;
-    const totalWidth = shuffled.length * w + (shuffled.length - 1) * gap;
-    const startX = (this.canvas.width - totalWidth) / 2;
+    const h = 80;
+    const gap = 8;
+    const count = shuffled.length;
+    const totalGapWidth = gap * (count - 1);
+    const availableWidth = this.canvas.width - 20;
+    const w = (availableWidth - totalGapWidth) / count;
+    const startX = 10;
     const y = (this.canvas.height - h) / 2;
     this.boxes = shuffled.map((opt, i) => ({
       x: startX + i * (w + gap),
