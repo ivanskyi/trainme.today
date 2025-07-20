@@ -14,9 +14,21 @@ export class TopicComponent implements AfterViewInit {
   private questionEl!: HTMLElement;
 
   data = [
-    { word: 'Dog', correct: 'Собака', options: ['Кіт', 'Собака', 'Риба'] },
-    { word: 'Apple', correct: 'Яблуко', options: ['Яблуко', 'Груша', 'Банан'] },
-    { word: 'House', correct: 'Будинок', options: ['Вікно', 'Будинок', 'Стіл'] }
+    { word: 'Achievement', correct: 'Досягнення', options: ['Провал', 'Досягнення', 'Спроба'] },
+    { word: 'Approach', correct: 'Підхід', options: ['Підхід', 'Відстань', 'Результат'] },
+    { word: 'Benefit', correct: 'Перевага', options: ['Проблема', 'Перевага', 'Втрати'] },
+    { word: 'Challenge', correct: 'Виклик', options: ['Відповідь', 'Виклик', 'Скарга'] },
+    { word: 'Concern', correct: 'Занепокоєння', options: ['Радість', 'Занепокоєння', 'Довіра'] },
+    { word: 'Decline', correct: 'Зниження', options: ['Підйом', 'Зниження', 'Виправлення'] },
+    { word: 'Evidence', correct: 'Доказ', options: ['Доказ', 'Уява', 'Думка'] },
+    { word: 'Growth', correct: 'Зростання', options: ['Падіння', 'Зростання', 'Втеча'] },
+    { word: 'Impact', correct: 'Вплив', options: ['Відповідальність', 'Зіткнення', 'Вплив'] },
+    { word: 'Issue', correct: 'Проблема', options: ['Успіх', 'Проблема', 'Випадок'] },
+    { word: 'Resource', correct: 'Ресурс', options: ['Ресурс', 'Втрата', 'Витрати'] },
+    { word: 'Solution', correct: 'Рішення', options: ['Завдання', 'Проблема', 'Рішення'] },
+    { word: 'Strategy', correct: 'Стратегія', options: ['Інтуїція', 'Стратегія', 'Помилка'] },
+    { word: 'Trend', correct: 'Тенденція', options: ['Тенденція', 'Суміш', 'Зміна'] },
+    { word: 'Value', correct: 'Цінність', options: ['Цінність', 'Ціна', 'Ризик'] }
   ];
 
   private boxes: Array<{x:number,y:number,w:number,h:number,text:string,correct:boolean,highlighted:boolean}> = [];
@@ -49,7 +61,6 @@ export class TopicComponent implements AfterViewInit {
   }
 
   private getNavbarHeight(): number {
-    // Try to get CSS variable or fallback to 60px
     const rootStyles = getComputedStyle(document.documentElement);
     const navbarHeight = rootStyles.getPropertyValue('--navbar-height');
     const val = parseInt(navbarHeight);
@@ -106,10 +117,10 @@ export class TopicComponent implements AfterViewInit {
     this.questionEl.textContent = q.word;
     this.speaking = false;
     const shuffled = [...q.options].sort(() => Math.random() - 0.5);
-    const w = 160, h = 100, gap = 20;
+    const w = Math.min(140, this.canvas.width / 4), h = 80, gap = 16;
     const totalWidth = shuffled.length * w + (shuffled.length - 1) * gap;
     const startX = (this.canvas.width - totalWidth) / 2;
-    const y = (this.canvas.height / 2) - (h / 2);
+    const y = (this.canvas.height - h) / 2;
     this.boxes = shuffled.map((opt, i) => ({
       x: startX + i * (w + gap),
       y,
@@ -145,7 +156,7 @@ export class TopicComponent implements AfterViewInit {
       const len2 = Math.hypot(bxRel, byRel);
       const angle = Math.acos(dot / (len1 * len2));
       const dist = Math.hypot(tx - cx, ty - cy);
-      box.highlighted = angle < 0.4 && dist < 200;
+      box.highlighted = angle < 0.4 && dist < 180;
     }
     const hit = this.boxes.find(b => b.highlighted);
     if (hit && !this.speaking) {
@@ -158,7 +169,11 @@ export class TopicComponent implements AfterViewInit {
       speechSynthesis.speak(msg);
       msg.onend = () => {
         if (correct) {
-          setTimeout(() => { this.current++; this.nextQuestion(); }, 1000);
+          setTimeout(() => {
+            this.current++;
+            this.speaking = false;
+            this.nextQuestion();
+          }, 1000);
         } else {
           this.speaking = false;
           this.startRepeating(this.data[this.current].word);
@@ -169,17 +184,18 @@ export class TopicComponent implements AfterViewInit {
 
   private drawBoxes() {
     for (const b of this.boxes) {
-      this.ctx.fillStyle = b.correct && b.highlighted ? '#28a745' : (b.highlighted ? '#dc3545' : '#444');
+      this.ctx.fillStyle = b.correct && b.highlighted ? '#28a745' : (b.highlighted ? '#dc3545' : '#222');
       this.ctx.fillRect(b.x, b.y, b.w, b.h);
       this.ctx.fillStyle = '#fff';
-      this.ctx.font = '20px sans-serif';
+      this.ctx.font = 'clamp(16px, 4vw, 22px) sans-serif';
       this.ctx.textBaseline = 'middle';
-      this.ctx.fillText(b.text, b.x + 15, b.y + b.h / 2);
+      this.ctx.textAlign = 'center';
+      this.ctx.fillText(b.text, b.x + b.w / 2, b.y + b.h / 2);
     }
   }
 
   private drawHand(hand: any) {
-    this.ctx.strokeStyle = 'lime';
+    this.ctx.strokeStyle = '#00ff88';
     this.ctx.lineWidth = 2;
     const connections = [
       [0, 1], [1, 2], [2, 3], [3, 4],
