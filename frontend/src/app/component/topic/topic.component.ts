@@ -1,9 +1,13 @@
-import { Component, AfterViewInit, HostListener, OnDestroy } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+  OnDestroy
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-import { Hands } from '@mediapipe/hands';
-import { Camera } from '@mediapipe/camera_utils';
-import { firstValueFrom } from "rxjs";
+import { firstValueFrom } from 'rxjs';
 
 interface WordQuestion {
   word: string;
@@ -13,112 +17,92 @@ interface WordQuestion {
 
 @Component({
   selector: 'app-topic',
-  templateUrl: './topic.component.html',
-  styleUrls: ['./topic.component.scss']
+  template: `<canvas #canvas></canvas>`,
+  styles: [`
+    canvas {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      background: #fff;
+    }
+  `]
 })
 export class TopicComponent implements AfterViewInit, OnDestroy {
-  private video!: HTMLVideoElement;
-  private canvas!: HTMLCanvasElement;
-  private ctx!: CanvasRenderingContext2D;
-  private questionEl!: HTMLElement;
-  private camera?: Camera;
-  private hands?: Hands;
-  private animationFrameId?: number;
-
+  @ViewChild('canvas', { static: true }) canvasRef!: ElementRef<HTMLCanvasElement>;
+  ctx!: CanvasRenderingContext2D;
   data: WordQuestion[] = [];
-  private boxes: Array<{ x: number; y: number; w: number; h: number; text: string; correct: boolean; highlighted: boolean }> = [];
-  private current = 0;
-  private latestHands: any = null;
-  private speaking = false;
-  private repeatTimeout: any = null;
-  private repeatDelay = 1000;
-  private repeatCount = 0;
-  private nextIsFemale = true;
-  private lastProcessTime = 0;
-  private readonly PROCESSING_INTERVAL = 100;
-  private readonly MAX_FPS = 30;
-  private lastRenderTime = 0;
-  private renderInterval = 1000 / this.MAX_FPS;
-  private cachedCanvasData = { width: 0, height: 0, navbarHeight: 0 };
-  private touchStartTime = 0;
-  private touchedBox: any = null;
-  private readonly TOUCH_DURATION = 500;
+  current = 0;
+  question: WordQuestion | null = null;
+  shuffledOptions: string[] = [];
+  selectedOption: string | null = null;
+  speaking = false;
+  repeatTimeout: any = null;
+  repeatDelay = 1000;
+  nextIsFemale = true;
+  optionBoxes: { text: string; x: number; y: number; w: number; h: number }[] = [];
 
   constructor(private http: HttpClient, private route: ActivatedRoute) {}
 
   ngAfterViewInit(): void {
-    this.video = document.getElementById('video') as HTMLVideoElement;
-    this.canvas = document.getElementById('canvas') as HTMLCanvasElement;
-    this.questionEl = document.getElementById('question') as HTMLElement;
-    this.ctx = this.canvas.getContext('2d')!;
-    this.ctx.imageSmoothingEnabled = false;
-
-    this.resizeCanvas();
-
     const topicId = this.route.snapshot.queryParamMap.get('id') || 'b2-words';
-    this.loadTopicData(topicId).then(() => {
-      this.initHandTracking();
-      this.startRenderLoop();
-      this.nextQuestion();
-    });
+    const canvas = this.canvasRef.nativeElement;
+    this.ctx = canvas.getContext('2d')!;
+    this.resizeCanvas();
+    window.addEventListener('resize', () => this.resizeCanvas());
+    this.loadTopicData(topicId).then(() => this.nextQuestion());
+    canvas.addEventListener('click', this.handleCanvasClick.bind(this));
+    canvas.addEventListener('touchstart', this.handleCanvasClick.bind(this));
   }
 
   ngOnDestroy(): void {
-    this.cleanup();
-  }
-
-  private cleanup(): void {
     this.stopRepeating();
-    if (this.animationFrameId) {
-      cancelAnimationFrame(this.animationFrameId);
-    }
-    if (this.camera) {
-      this.camera.stop();
-    }
-    if (this.hands) {
-      this.hands.close();
-    }
-    speechSynthesis.cancel();
+    window.removeEventListener('resize', () => this.resizeCanvas());
   }
 
-  @HostListener('window:resize')
-  resizeCanvas(): void {
-    const newWidth = window.innerWidth;
-    const newHeight = window.innerHeight - this.getNavbarHeight();
-
-    if (this.cachedCanvasData.width !== newWidth || this.cachedCanvasData.height !== newHeight) {
-      this.canvas.width = newWidth;
-      this.canvas.height = newHeight;
-      this.cachedCanvasData.width = newWidth;
-      this.cachedCanvasData.height = newHeight;
-
-      if (this.data.length > 0 && this.current < this.data.length) {
-        this.calculateBoxPositions();
-      }
-    }
+  resizeCanvas() {
+    const canvas = this.canvasRef.nativeElement;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    canvas.style.width = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+    this.ctx.setTransform(1, 0, 0, 1, 0, 0);
+    this.ctx.scale(dpr, dpr);
+    this.render();
   }
 
-  private getNavbarHeight(): number {
-    if (this.cachedCanvasData.navbarHeight === 0) {
-      const rootStyles = getComputedStyle(document.documentElement);
-      const navbarHeight = rootStyles.getPropertyValue('--navbar-height');
-      const val = parseInt(navbarHeight);
-      this.cachedCanvasData.navbarHeight = isNaN(val) ? 60 : val;
-    }
-    return this.cachedCanvasData.navbarHeight;
-  }
-
-  private async loadTopicData(topicId: string): Promise<void> {
+  async loadTopicData(topicId: string): Promise<void> {
     const path = `assets/topics/${topicId}.json`;
     try {
       this.data = await firstValueFrom(this.http.get<WordQuestion[]>(path));
-    } catch (error) {
-      console.error('Failed to load topic data:', error);
+    } catch {
       this.data = [];
     }
   }
 
-  private speakWord(word: string, done?: () => void): void {
+  nextQuestion(): void {
+    if (this.current >= this.data.length) this.current = 0;
+    this.question = this.data[this.current];
+    this.shuffledOptions = this.shuffleArray([...this.question.options]);
+    this.selectedOption = null;
+    this.speaking = false;
+    this.optionBoxes = [];
+    this.startRepeating(this.question.word);
+    this.render();
+  }
+
+  shuffleArray<T>(array: T[]): T[] {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  }
+
+  speakWord(word: string, done?: () => void): void {
     speechSynthesis.cancel();
     const utter = new SpeechSynthesisUtterance(word);
     utter.rate = 1;
@@ -130,18 +114,15 @@ export class TopicComponent implements AfterViewInit, OnDestroy {
     speechSynthesis.speak(utter);
   }
 
-  private startRepeating(word: string): void {
+  startRepeating(word: string): void {
     this.stopRepeating();
     this.repeatDelay = 1000;
-    this.repeatCount = 0;
 
     const repeat = () => {
       if (this.speaking || speechSynthesis.speaking) {
         this.repeatTimeout = setTimeout(repeat, this.repeatDelay);
         return;
       }
-
-      this.repeatCount++;
       this.speakWord(word, () => {
         this.repeatDelay = Math.min(this.repeatDelay * 1.5, 8000);
         this.repeatTimeout = setTimeout(repeat, this.repeatDelay);
@@ -151,7 +132,7 @@ export class TopicComponent implements AfterViewInit, OnDestroy {
     repeat();
   }
 
-  private stopRepeating(): void {
+  stopRepeating(): void {
     if (this.repeatTimeout) {
       clearTimeout(this.repeatTimeout);
       this.repeatTimeout = null;
@@ -159,103 +140,41 @@ export class TopicComponent implements AfterViewInit, OnDestroy {
     speechSynthesis.cancel();
   }
 
-  private nextQuestion(): void {
-    if (this.current >= this.data.length) this.current = 0;
+  handleCanvasClick(event: MouseEvent | TouchEvent) {
+    if (this.speaking || !this.question || this.selectedOption) return;
+    event.preventDefault();
 
-    const q = this.data[this.current];
-    this.questionEl.textContent = q.word;
-    this.speaking = false;
-    this.touchStartTime = 0;
-    this.touchedBox = null;
+    const rect = this.canvasRef.nativeElement.getBoundingClientRect();
+    let x = 0;
+    let y = 0;
 
-    this.calculateBoxPositions();
-    this.startRepeating(q.word);
-  }
-
-  private calculateBoxPositions(): void {
-    const q = this.data[this.current];
-    const shuffled = this.shuffleArray([...q.options]);
-
-    const h = 80;
-    const gap = 8;
-    const count = shuffled.length;
-    const totalGapWidth = gap * (count - 1);
-    const availableWidth = this.canvas.width - 20;
-    const w = (availableWidth - totalGapWidth) / count;
-    const startX = 10;
-    const y = (this.canvas.height - h) / 2;
-
-    this.boxes = shuffled.map((opt, i) => ({
-      x: startX + i * (w + gap),
-      y,
-      w,
-      h,
-      text: opt,
-      correct: opt === q.correct,
-      highlighted: false
-    }));
-  }
-
-  private shuffleArray<T>(array: T[]): T[] {
-    const shuffled = [...array];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    if ('touches' in event) {
+      x = event.touches[0].clientX - rect.left;
+      y = event.touches[0].clientY - rect.top;
+    } else {
+      x = (event as MouseEvent).clientX - rect.left;
+      y = (event as MouseEvent).clientY - rect.top;
     }
-    return shuffled;
-  }
 
-  private mirrorX(x: number): number {
-    return this.canvas.width - x;
-  }
-
-  private checkPointing(hand: any): void {
-    const now = Date.now();
-    if (now - this.lastProcessTime < this.PROCESSING_INTERVAL) return;
-    this.lastProcessTime = now;
-
-    const tip = hand[8];
-    const tx = this.mirrorX(tip.x * this.canvas.width);
-    const ty = tip.y * this.canvas.height;
-
-    this.boxes.forEach(box => box.highlighted = false);
-
-    let touchingBox = null;
-
-    for (const box of this.boxes) {
-      const isTouching = tx >= box.x && tx <= box.x + box.w && ty >= box.y && ty <= box.y + box.h;
-
-      if (isTouching) {
-        touchingBox = box;
-        box.highlighted = true;
+    for (const box of this.optionBoxes) {
+      if (
+        x >= box.x &&
+        x <= box.x + box.w &&
+        y >= box.y &&
+        y <= box.y + box.h
+      ) {
+        this.selectOption(box.text);
         break;
       }
     }
-
-    if (touchingBox && !this.speaking) {
-      if (this.touchedBox === touchingBox) {
-        if (this.touchStartTime === 0) {
-          this.touchStartTime = now;
-        } else if (now - this.touchStartTime >= this.TOUCH_DURATION) {
-          this.handleSelection(touchingBox);
-        }
-      } else {
-        this.touchedBox = touchingBox;
-        this.touchStartTime = now;
-      }
-    } else {
-      this.touchStartTime = 0;
-      this.touchedBox = null;
-    }
   }
 
-  private handleSelection(hit: any): void {
+  selectOption(option: string): void {
+    this.selectedOption = option;
     this.speaking = true;
     this.stopRepeating();
-    this.touchStartTime = 0;
-    this.touchedBox = null;
 
-    const correct = hit.text === this.data[this.current].correct;
+    const correct = option === this.question!.correct;
     const msg = new SpeechSynthesisUtterance(correct ? 'Correct!' : 'Wrong, try again.');
     msg.rate = 1;
     msg.pitch = this.nextIsFemale ? 1.2 : 0.8;
@@ -274,108 +193,99 @@ export class TopicComponent implements AfterViewInit, OnDestroy {
         }, 1000);
       } else {
         this.speaking = false;
-        this.startRepeating(this.data[this.current].word);
+        this.startRepeating(this.question!.word);
+        this.selectedOption = null;
+        this.render();
       }
     };
+
+    this.render();
   }
 
-  private drawBoxes(): void {
-    this.ctx.textAlign = 'center';
-    this.ctx.textBaseline = 'middle';
-    this.ctx.font = 'clamp(16px, 4vw, 22px) sans-serif';
+  render() {
+    const ctx = this.ctx;
+    const canvas = this.canvasRef.nativeElement;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    for (const b of this.boxes) {
-      let fillColor = '#222';
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      if (b.highlighted) {
-        if (this.touchedBox === b && this.touchStartTime > 0) {
-          const elapsed = Date.now() - this.touchStartTime;
-          const progress = Math.min(elapsed / this.TOUCH_DURATION, 1);
-          const intensity = Math.floor(255 * progress);
-          fillColor = b.correct ? `rgb(${40 + intensity * 0.7}, ${167 + intensity * 0.3}, ${69 + intensity * 0.7})` : `rgb(${220 + intensity * 0.15}, ${53 + intensity * 0.8}, ${69 + intensity * 0.7})`;
-        } else {
-          fillColor = b.correct ? '#28a745' : '#dc3545';
+    if (!this.question) {
+      ctx.fillStyle = '#222';
+      ctx.font = '600 28px "Inter", "Segoe UI", sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText('Loading...', 20, 40);
+      return;
+    }
+
+    ctx.fillStyle = '#111';
+    ctx.font = '600 40px "Inter", "Segoe UI", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    ctx.fillText(this.question.word, canvas.width / 2, 60);
+
+    const boxWidth = Math.min(canvas.width * 0.8, 500);
+    const boxHeight = 60;
+    const gap = 24;
+    const startY = 160;
+    const centerX = canvas.width / 2;
+
+    this.optionBoxes = [];
+
+    for (let i = 0; i < this.shuffledOptions.length; i++) {
+      const opt = this.shuffledOptions[i];
+      const x = centerX - boxWidth / 2;
+      const y = startY + i * (boxHeight + gap);
+
+      ctx.shadowColor = 'rgba(0,0,0,0.04)';
+      ctx.shadowBlur = 8;
+      ctx.shadowOffsetX = 0;
+      ctx.shadowOffsetY = 4;
+
+      let bg = '#fdfdfd';
+      let border = '#e0e0e0';
+      let textColor = '#222';
+
+      if (this.selectedOption) {
+        if (opt === this.question.correct) {
+          bg = '#e3fbe3';
+          border = '#a5d6a7';
+          textColor = '#1b5e20';
+        } else if (opt === this.selectedOption && opt !== this.question.correct) {
+          bg = '#fdecec';
+          border = '#ef9a9a';
+          textColor = '#b71c1c';
         }
       }
 
-      this.ctx.fillStyle = fillColor;
-      this.ctx.fillRect(b.x, b.y, b.w, b.h);
-      this.ctx.fillStyle = '#fff';
-      this.ctx.fillText(b.text, b.x + b.w / 2, b.y + b.h / 2);
+      ctx.fillStyle = bg;
+      this.roundRect(ctx, x, y, boxWidth, boxHeight, 12, true, false);
+
+      ctx.shadowBlur = 0;
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = border;
+      this.roundRect(ctx, x, y, boxWidth, boxHeight, 12, false, true);
+
+      ctx.fillStyle = textColor;
+      ctx.font = '500 22px "Inter", "Segoe UI", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(opt, centerX, y + boxHeight / 2);
+
+      this.optionBoxes.push({ text: opt, x, y, w: boxWidth, h: boxHeight });
     }
   }
 
-  private drawHand(hand: any): void {
-    this.ctx.strokeStyle = '#00ff88';
-    this.ctx.lineWidth = 2;
-
-    const connections = [
-      [0, 1], [1, 2], [2, 3], [3, 4],
-      [0, 5], [5, 6], [6, 7], [7, 8],
-      [5, 9], [9, 10], [10, 11], [11, 12],
-      [9, 13], [13, 14], [14, 15], [15, 16],
-      [13, 17], [17, 18], [18, 19], [19, 20]
-    ];
-
-    this.ctx.beginPath();
-    for (const [s, e] of connections) {
-      const p1 = hand[s], p2 = hand[e];
-      this.ctx.moveTo(this.mirrorX(p1.x * this.canvas.width), p1.y * this.canvas.height);
-      this.ctx.lineTo(this.mirrorX(p2.x * this.canvas.width), p2.y * this.canvas.height);
-    }
-    this.ctx.stroke();
-  }
-
-  private startRenderLoop(): void {
-    const render = (currentTime: number) => {
-      if (currentTime - this.lastRenderTime >= this.renderInterval) {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.drawBoxes();
-
-        if (this.latestHands?.multiHandLandmarks) {
-          for (const hand of this.latestHands.multiHandLandmarks) {
-            this.drawHand(hand);
-            this.checkPointing(hand);
-          }
-        }
-
-        this.lastRenderTime = currentTime;
-      }
-      this.animationFrameId = requestAnimationFrame(render);
-    };
-
-    this.animationFrameId = requestAnimationFrame(render);
-  }
-
-  private initHandTracking(): void {
-    this.hands = new Hands({
-      locateFile: (file: string) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`
-    });
-
-    this.hands.setOptions({
-      maxNumHands: 1,
-      modelComplexity: 0,
-      minDetectionConfidence: 0.7,
-      minTrackingConfidence: 0.5,
-    });
-
-    this.hands.onResults((results: any) => {
-      this.latestHands = results;
-    });
-
-    this.camera = new Camera(this.video, {
-      onFrame: async () => {
-        if (this.hands && this.video.readyState === 4) {
-          await this.hands.send({ image: this.video });
-        }
-      },
-      width: 320,
-      height: 240,
-      facingMode: 'user'
-    });
-
-    this.camera.start().catch(err => {
-      console.error('Camera failed to start:', err);
-    });
+  roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number, fill: boolean, stroke: boolean) {
+    const radius = Math.min(r, w / 2, h / 2);
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.arcTo(x + w, y, x + w, y + h, radius);
+    ctx.arcTo(x + w, y + h, x, y + h, radius);
+    ctx.arcTo(x, y + h, x, y, radius);
+    ctx.arcTo(x, y, x + w, y, radius);
+    ctx.closePath();
+    if (fill) ctx.fill();
+    if (stroke) ctx.stroke();
   }
 }

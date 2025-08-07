@@ -22,5 +22,61 @@
     "rubric": "Level B",
     "subrubric": "Vocabulary",
     "sub_subrubric": "Letter C"
+  },
+  {
+    "id": "b2-words-d",
+    "name": "Vocabulary D",
+    "description": "B2-level words categorized by D",
+    "rubric": "Level B",
+    "subrubric": "Vocabulary",
+    "sub_subrubric": "Letter D"
+  },
+  {
+    "id": "b2-words-e",
+    "name": "Vocabulary E",
+    "description": "B2-level words categorized by E",
+    "rubric": "Level B",
+    "subrubric": "Vocabulary",
+    "sub_subrubric": "Letter E"
+  },
+  {
+    "id": "b2-words-f",
+    "name": "Vocabulary F",
+    "description": "B2-level words categorized by F",
+    "rubric": "Level B",
+    "subrubric": "Vocabulary",
+    "sub_subrubric": "Letter F"
+  },
+  {
+    "id": "b2-words-g",
+    "name": "Vocabulary G",
+    "description": "B2-level words categorized by G",
+    "rubric": "Level B",
+    "subrubric": "Vocabulary",
+    "sub_subrubric": "Letter G"
+  },
+  {
+    "id": "b2-words-h",
+    "name": "Vocabulary H",
+    "description": "B2-level words categorized by H",
+    "rubric": "Level B",
+    "subrubric": "Vocabulary",
+    "sub_subrubric": "Letter H"
+  },
+  {
+    "id": "b2-words-i",
+    "name": "Vocabulary I",
+    "description": "B2-level words categorized by I",
+    "rubric": "Level B",
+    "subrubric": "Vocabulary",
+    "sub_subrubric": "Letter I"
+  },
+  {
+    "id": "b2-words-j",
+    "name": "Vocabulary J",
+    "description": "B2-level words categorized by J",
+    "rubric": "Level B",
+    "subrubric": "Vocabulary",
+    "sub_subrubric": "Letter J"
   }
 ]
